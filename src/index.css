@@ -1,0 +1,1636 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --gold: #d4a843;
+  --nav-text: #e8d5a3;
+  --dark: #1a2e1e;
+  --navbar-h: 54px;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  /* Single source of truth for the cork/paper texture — covers navbar too */
+  background-color: var(--dark);
+  background-image: url('/src/assets/bg_1.jpeg');
+  background-size: contain;
+  background-position: top right;
+  background-repeat: repeat;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Navbar ─────────────────────────────────── */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(100vw, calc(100vh * (1024 / 682)));
+  height: clamp(42px, 6.5vh, 60px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 1.8vw, 24px);
+  padding: 0 3.2%;
+}
+
+.navbar .camera-icon {
+  width: clamp(26px, 2.8vw, 42px);
+  height: auto;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+.nav-links {
+  display: flex;
+  gap: clamp(14px, 1.8vw, 28px);
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-family: 'Caveat', cursive;
+  font-size: clamp(16px, 1.5vw, 22px);
+  color: var(--nav-text);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a.active {
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.nav-links a:hover {
+  color: var(--gold);
+}
+
+.nav-heart {
+  margin-left: auto;
+  width: clamp(18px, 1.8vw, 28px);
+  height: auto;
+}
+
+/* ── Board — full viewport (background comes from body) ─── */
+.home-board {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/*
+  Ratio container: strictly locked to the reference aspect ratio 1024:682 (~1.5015:1).
+  Centered both horizontally and vertically inside the full-screen dark green paper background.
+  On widescreen displays (ratio > 1.5): height is 100vh, width is 150.15vh, centered horizontally.
+  On narrower displays (ratio < 1.5): width is 100vw, height is 66.6vw, centered vertically.
+  All scrapbook elements use exact percentage positions derived from the 1024x682 design,
+  ensuring a pixel-perfect, distortion-free match across all screen resolutions!
+*/
+.board-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(100vw, calc(100vh * (1024 / 682)));
+  height: min(100vh, calc(100vw * (682 / 1024)));
+  aspect-ratio: 1024 / 682;
+}
+
+/* All scrapbook elements: absolutely positioned within board-content */
+.el {
+  position: absolute;
+  transform-origin: center center;
+}
+
+.el img {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+.birthday-note {
+  left: 8.40%;
+  top: 7.33%;
+  width: 40.80%;
+  z-index: 10;
+  transform: rotate(-2deg);
+}
+
+.birthday-note img {
+  filter: drop-shadow(3px 5px 14px rgba(0, 0, 0, 0.45));
+}
+
+.main-polaroid {
+  left: 30.57%;
+  top: 31.09%;
+  width: 39.65%;
+  z-index: 10;
+  transform: rotate(-3.5deg);
+}
+
+.main-polaroid img {
+  filter: drop-shadow(4px 7px 18px rgba(0, 0, 0, 0.58));
+}
+
+.small-note {
+  left: 6.64%;
+  top: 48.97%;
+  width: 16.70%;
+  z-index: 9;
+}
+
+.small-note img {
+  filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.4));
+}
+
+.sunset-polaroid {
+  left: 70.12%;
+  top: 11.88%;
+  width: 12.53%;
+  z-index: 9;
+}
+
+.sunset-polaroid img {
+  filter: drop-shadow(3px 5px 14px rgba(0, 0, 0, 0.5));
+}
+
+.butterfly {
+  left: 81.25%;
+  top: 30.65%;
+  width: 13.67%;
+  z-index: 12;
+}
+
+.butterfly img {
+  filter: drop-shadow(2px 3px 8px rgba(0, 0, 0, 0.35));
+  animation: flutter 3s ease-in-out infinite;
+}
+
+.grateful-text {
+  left: 73.44%;
+  top: 50.15%;
+  width: 18.07%;
+  z-index: 9;
+}
+
+.flower {
+  left: 5.66%;
+  top: 78.01%;
+  width: 9.28%;
+  z-index: 11;
+}
+
+.flower img {
+  filter: drop-shadow(1px 2px 6px rgba(0, 0, 0, 0.35));
+}
+
+.yellow-heart {
+  left: 21.78%;
+  top: 76.10%;
+  width: 5.08%;
+  z-index: 11;
+}
+
+.yellow-heart img {
+  animation: heartbeat 2.6s ease-in-out infinite;
+}
+
+.blue-star {
+  left: 75.88%;
+  top: 79.03%;
+  width: 6.35%;
+  z-index: 11;
+}
+
+.blue-star img {
+  filter: drop-shadow(1px 2px 6px rgba(0, 0, 0, 0.35));
+}
+
+.smiley {
+  left: 86.91%;
+  top: 71.55%;
+  width: 9.96%;
+  z-index: 11;
+}
+
+.smiley img {
+  filter: drop-shadow(1px 3px 8px rgba(0, 0, 0, 0.35));
+}
+
+/* ── Interactive Polaroid — Bass Speaker Pulse ───────────── */
+.interactive-polaroid {
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-decoration: none;
+  display: block;
+}
+
+/* Pulse lives on the img so it doesn't fight the parent rotate() */
+.interactive-polaroid img {
+  animation: bassPulse 2s ease-in-out infinite;
+  transition: filter 0.3s ease;
+}
+
+.interactive-polaroid:hover {
+  transform: rotate(-2deg) scale(1.03) !important;
+}
+
+/* On hover: stop idle pulse, light the glow up fully */
+.interactive-polaroid:hover img {
+  animation: none !important;
+  filter:
+    drop-shadow(0px 0px 16px rgba(255, 220, 80, 0.75)) drop-shadow(4px 10px 22px rgba(0, 0, 0, 0.65)) !important;
+}
+
+/* ── Eye-Catching Lead — Text + Arrow, inside polaroid space ─ */
+.click-lead {
+  position: absolute;
+  z-index: 26;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  /* Sits in the bottom-left area of the main polaroid */
+  left: 30%;
+  top: 72%;
+  user-select: none;
+  animation:
+    leadDropIn 0.9s 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  transition: transform 0.2s ease;
+}
+
+.click-lead:hover {
+  transform: scale(1.06) !important;
+}
+
+.click-lead:active {
+  transform: scale(0.95) !important;
+}
+
+.lead-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.lead-text {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(32px, 3.8vw, 52px);
+  font-weight: 700;
+  color: #fffde7;
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  display: block;
+  animation: leadGlowPulse 3s 1.3s ease-in-out infinite;
+  text-shadow:
+    0 0 6px rgba(255, 255, 255, 0.9),
+    0 0 14px rgba(251, 191, 36, 1),
+    0 0 28px rgba(251, 191, 36, 0.65),
+    0 2px 6px rgba(0, 0, 0, 0.85);
+}
+
+/* Arrow SVG pointing up-right toward the image center */
+.lead-arrow {
+  position: absolute;
+  top: -42px;
+  right: -14px;
+  width: 58px;
+  height: 50px;
+  pointer-events: none;
+  opacity: 1;
+  transform: scaleX(-1);
+  filter:
+    drop-shadow(0px 0px 4px rgba(255, 240, 100, 0.9)) drop-shadow(1px 2px 4px rgba(0, 0, 0, 0.7));
+}
+
+
+/* ── Portrait / Vertical / Square Screens (matching vertical reference 819:1024) ─── */
+@media (max-aspect-ratio: 1.15/1) {
+  .navbar {
+    width: 100%;
+    height: clamp(40px, 5.5vh, 54px);
+    padding: 0 4%;
+  }
+
+  .navbar .camera-icon {
+    width: clamp(22px, 4vw, 34px);
+  }
+
+  .nav-links {
+    gap: clamp(10px, 2.5vw, 20px);
+  }
+
+  .nav-links a {
+    font-size: clamp(14px, 2.6vw, 19px);
+  }
+
+  .nav-heart {
+    width: clamp(16px, 3vw, 24px);
+  }
+
+  .board-content {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
+    aspect-ratio: auto;
+  }
+
+  .birthday-note {
+    left: 6.72%;
+    top: 8.79%;
+    width: 64.10%;
+    z-index: 10;
+    transform: rotate(-2deg);
+  }
+
+  .main-polaroid {
+    left: 25.64%;
+    top: 35.16%;
+    width: 52.50%;
+    z-index: 8;
+    transform: rotate(-3.5deg);
+  }
+
+  .small-note {
+    left: 1.83%;
+    top: 42.97%;
+    width: 27.47%;
+    z-index: 9;
+  }
+
+  .sunset-polaroid {
+    left: 72.04%;
+    top: 11.23%;
+    width: 23.20%;
+    z-index: 9;
+  }
+
+  .butterfly {
+    left: 77.53%;
+    top: 30.27%;
+    width: 19.54%;
+    z-index: 12;
+  }
+
+  .grateful-text {
+    left: 76.92%;
+    top: 48.83%;
+    width: 22.59%;
+    z-index: 11;
+  }
+
+  .yellow-heart {
+    left: 15.87%;
+    top: 65.43%;
+    width: 7.33%;
+    z-index: 11;
+  }
+
+  .flower {
+    left: 5.49%;
+    top: 75.68%;
+    width: 17.70%;
+    z-index: 11;
+  }
+
+  .blue-star {
+    left: 61.05%;
+    top: 80.57%;
+    width: 12.21%;
+    z-index: 11;
+  }
+
+  .smiley {
+    left: 78.14%;
+    top: 76.17%;
+    width: 17.70%;
+    z-index: 11;
+  }
+
+  .click-lead {
+    /* Sits below the main polaroid on vertical screens */
+    left: 26%;
+    top: 66%;
+  }
+
+  .lead-text {
+    font-size: clamp(28px, 5.5vw, 44px);
+  }
+
+  .lead-arrow {
+    top: -30px;
+    right: -8px;
+    width: 38px;
+    height: 34px;
+  }
+}
+
+/* ── Keyframes ───────────────────────────────── */
+@keyframes flutter {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  30% {
+    transform: translateY(-6px) rotate(3deg);
+  }
+
+  70% {
+    transform: translateY(-2px) rotate(-2deg);
+  }
+}
+
+@keyframes heartbeat {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scale(1.14);
+  }
+
+  60% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes leadDropIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(-20px);
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale(1.1) translateY(3px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes leadGlowPulse {
+
+  0%,
+  100% {
+    text-shadow:
+      0 0 6px rgba(255, 255, 255, 0.9),
+      0 0 14px rgba(251, 191, 36, 1),
+      0 0 28px rgba(251, 191, 36, 0.65),
+      0 2px 6px rgba(0, 0, 0, 0.85);
+    transform: scale(1);
+  }
+
+  50% {
+    text-shadow:
+      0 0 10px rgba(255, 255, 255, 1),
+      0 0 22px rgba(255, 220, 60, 1),
+      0 0 44px rgba(255, 220, 60, 0.7),
+      0 2px 6px rgba(0, 0, 0, 0.85);
+    transform: scale(1.04);
+  }
+}
+
+@keyframes bassPulse {
+
+  /* Filter-only — applied to img so parent rotate() is preserved */
+  0%,
+  100% {
+    filter:
+      drop-shadow(0px 0px 0px rgba(255, 220, 80, 0)) drop-shadow(4px 8px 16px rgba(0, 0, 0, 0.55));
+  }
+
+  30% {
+    filter:
+      drop-shadow(0px 0px 10px rgba(255, 220, 80, 0.55)) drop-shadow(4px 8px 18px rgba(0, 0, 0, 0.58));
+  }
+
+  50% {
+    filter:
+      drop-shadow(0px 0px 2px rgba(255, 220, 80, 0.1)) drop-shadow(4px 8px 16px rgba(0, 0, 0, 0.55));
+  }
+
+  80% {
+    filter:
+      drop-shadow(0px 0px 14px rgba(255, 220, 80, 0.6)) drop-shadow(4px 8px 20px rgba(0, 0, 0, 0.6));
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCRAPBOOK VIEWER  —  /photos route
+   4 : 5 canvas, identical on every device
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Viewer shell ─────────────────────────────────────────── */
+.sb-viewer {
+  position: fixed;
+  /* Cover the FULL viewport including the navbar area */
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* Dark + blur overlay on top of the global body background */
+  background-color: rgba(10, 22, 13, 0.72);
+  overflow: hidden;
+  padding: calc(var(--navbar-h, 54px) + 16px) 0 80px;
+}
+
+/* ── 4:5 book canvas ─────────────────────────────────────── */
+.sb-book {
+  position: relative;
+  /* 4:5 ratio: height = 125% of width */
+  width: min(90vw, calc((100vh - var(--navbar-h, 54px) - 96px) * 0.8));
+  aspect-ratio: 4 / 5;
+  perspective: 2200px;
+  perspective-origin: center center;
+  border-radius: 8px;
+  box-shadow:
+    0 26px 70px rgba(0, 0, 0, 0.7),
+    0 8px 24px rgba(0, 0, 0, 0.55),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+/* Subtle book spine shadow on the left edge */
+.sb-book::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 28px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0.12) 65%, transparent 100%);
+  pointer-events: none;
+  z-index: 40;
+}
+
+/* ── Sheets & Layers ─────────────────────────────────────── */
+.sb-sheet {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+.sb-sheet--static {
+  transform: none;
+}
+
+/* ── Turning Sheet (Top layer, flexible curling physics) ── */
+.sb-sheet--turning-forward {
+  transform-origin: left center;
+  animation: sbFlipForward 0.68s cubic-bezier(0.25, 1, 0.36, 1) both;
+  pointer-events: none;
+}
+
+.sb-sheet--turning-back {
+  transform-origin: left center;
+  animation: sbFlipBack 0.68s cubic-bezier(0.22, 1, 0.36, 1) both;
+  pointer-events: none;
+}
+
+/* Inner wrapper for 3D paper depth */
+.sb-sheet__inner {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+/* Dynamic paper sheen & crease gradient on turning page */
+.sb-paper-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 35;
+  border-radius: 8px;
+  opacity: 0;
+}
+
+.sb-sheet--turning-forward .sb-paper-sheen {
+  animation: sbSheenForward 0.68s cubic-bezier(0.25, 1, 0.36, 1) both;
+}
+
+.sb-sheet--turning-back .sb-paper-sheen {
+  animation: sbSheenBack 0.68s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── Underlying Sheet (Base layer reveal) ─────────────────── */
+.sb-sheet--under-forward {
+  animation: sbUnderRevealForward 0.68s cubic-bezier(0.25, 1, 0.36, 1) both;
+}
+
+.sb-sheet--under-back {
+  animation: sbUnderRevealBack 0.68s cubic-bezier(0.25, 1, 0.36, 1) both;
+}
+
+/* Shadow cast on the page underneath */
+.sb-shadow-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 30;
+}
+
+.sb-shadow-overlay--forward {
+  animation: sbShadowLift 0.68s cubic-bezier(0.25, 1, 0.36, 1) both;
+}
+
+.sb-shadow-overlay--back {
+  animation: sbShadowFall 0.68s cubic-bezier(0.25, 1, 0.36, 1) both;
+}
+
+/* ── Realistic Flexible Paper Keyframes ──────────────────── */
+
+/* Forward Page Turn: Lifting from right, bending across spine */
+@keyframes sbFlipForward {
+  0% {
+    transform: rotateY(0deg) skewY(0deg) rotateZ(0deg) scale(1);
+    opacity: 1;
+    filter: drop-shadow(-2px 0 6px rgba(0, 0, 0, 0.3));
+  }
+
+  24% {
+    /* Corner lifts and flexes, paper starts bending */
+    transform: rotateY(-26deg) skewY(-3.2deg) rotateZ(-1.6deg) scale(0.985);
+    opacity: 1;
+    filter: drop-shadow(-8px 4px 18px rgba(0, 0, 0, 0.5));
+  }
+
+  52% {
+    /* Halfway: paper deep curl */
+    transform: rotateY(-72deg) skewY(-4.5deg) rotateZ(-2.2deg) scale(0.965);
+    opacity: 0.98;
+    filter: drop-shadow(-16px 8px 30px rgba(0, 0, 0, 0.6));
+  }
+
+  78% {
+    /* Sweeping across towards left */
+    transform: rotateY(-118deg) skewY(-2.5deg) rotateZ(-1.2deg) scale(0.94);
+    opacity: 0.6;
+    filter: drop-shadow(-22px 10px 36px rgba(0, 0, 0, 0.4));
+  }
+
+  100% {
+    /* Folds away smoothly onto left side */
+    transform: rotateY(-155deg) skewY(-0.5deg) rotateZ(-0.2deg) scale(0.92);
+    opacity: 0;
+    filter: none;
+  }
+}
+
+/* Backward Page Turn: Sweeping in from left, floating and settling flat */
+@keyframes sbFlipBack {
+  0% {
+    transform: rotateY(-145deg) skewY(3deg) rotateZ(1.5deg) scale(0.92);
+    opacity: 0;
+    filter: drop-shadow(-20px 8px 34px rgba(0, 0, 0, 0.4));
+  }
+
+  25% {
+    transform: rotateY(-105deg) skewY(4.2deg) rotateZ(2deg) scale(0.95);
+    opacity: 0.85;
+    filter: drop-shadow(-16px 6px 28px rgba(0, 0, 0, 0.55));
+  }
+
+  58% {
+    transform: rotateY(-42deg) skewY(2.8deg) rotateZ(1.2deg) scale(0.98);
+    opacity: 1;
+    filter: drop-shadow(-10px 4px 20px rgba(0, 0, 0, 0.5));
+  }
+
+  86% {
+    /* Micro-flex overshoot as flexible paper hits surface */
+    transform: rotateY(2.2deg) skewY(-0.4deg) rotateZ(-0.2deg) scale(1.006);
+    opacity: 1;
+    filter: drop-shadow(-3px 2px 8px rgba(0, 0, 0, 0.35));
+  }
+
+  100% {
+    transform: rotateY(0deg) skewY(0deg) rotateZ(0deg) scale(1);
+    opacity: 1;
+    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+  }
+}
+
+/* Under page reveal when going forward */
+@keyframes sbUnderRevealForward {
+  0% {
+    transform: scale(0.965);
+    filter: brightness(0.85);
+  }
+
+  60% {
+    transform: scale(0.99);
+    filter: brightness(0.96);
+  }
+
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+/* Under page when going backward (previous page landing on it) */
+@keyframes sbUnderRevealBack {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+
+  100% {
+    transform: scale(0.98);
+    filter: brightness(0.9);
+  }
+}
+
+/* Dynamic paper sheen that glides across the turning page */
+@keyframes sbSheenForward {
+  0% {
+    opacity: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0) 100%);
+  }
+
+  35% {
+    opacity: 0.55;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.45) 0%, rgba(255, 255, 255, 0.22) 40%, rgba(0, 0, 0, 0.35) 80%, transparent 100%);
+  }
+
+  70% {
+    opacity: 0.4;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(255, 255, 255, 0.15) 30%, transparent 80%);
+  }
+
+  100% {
+    opacity: 0;
+    background: none;
+  }
+}
+
+@keyframes sbSheenBack {
+  0% {
+    opacity: 0.45;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(255, 255, 255, 0.18) 35%, transparent 85%);
+  }
+
+  45% {
+    opacity: 0.5;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.45) 0%, rgba(255, 255, 255, 0.22) 45%, rgba(0, 0, 0, 0.3) 80%, transparent 100%);
+  }
+
+  85% {
+    opacity: 0.15;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0%, rgba(255, 255, 255, 0.08) 60%, transparent 100%);
+  }
+
+  100% {
+    opacity: 0;
+    background: none;
+  }
+}
+
+/* Shadow falling on the page below as top page lifts */
+@keyframes sbShadowLift {
+  0% {
+    opacity: 0.65;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.28) 45%, transparent 85%);
+  }
+
+  45% {
+    opacity: 0.4;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.15) 50%, transparent 90%);
+  }
+
+  100% {
+    opacity: 0;
+    background: transparent;
+  }
+}
+
+@keyframes sbShadowFall {
+  0% {
+    opacity: 0;
+    background: transparent;
+  }
+
+  50% {
+    opacity: 0.35;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.15) 50%, transparent 90%);
+  }
+
+  100% {
+    opacity: 0.6;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.28) 45%, transparent 85%);
+  }
+}
+
+/* ── Shared page container ───────────────────────────────── */
+.sb-page {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background-color: #2d4a35;
+  background-image: url('/src/assets/bg_1.jpeg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: repeat;
+}
+
+/* ── Shared helpers ──────────────────────────────────────── */
+.sb-el {
+  position: absolute;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Washi tape strips */
+.sb-tape {
+  position: absolute;
+  height: 18px;
+  width: 70px;
+  background: rgba(210, 190, 130, 0.55);
+  border-left: 2px dashed rgba(180, 140, 60, 0.35);
+  border-right: 2px dashed rgba(180, 140, 60, 0.35);
+  z-index: 20;
+}
+
+.sb-tape--top-left {
+  top: 0;
+  left: 12%;
+  transform: rotate(-2deg);
+}
+
+.sb-tape--top-center {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) rotate(1deg);
+}
+
+.sb-tape--top-right {
+  top: 0;
+  right: 10%;
+  transform: rotate(2deg);
+}
+
+/* Sticky note */
+.sb-sticky {
+  position: absolute;
+  background: linear-gradient(135deg, #fffdf4, #fef3c7 60%, #fde68a);
+  border: 1.5px dashed rgba(180, 83, 9, 0.35);
+  border-radius: 4px 8px 6px 4px;
+  padding: 10px 12px;
+  font-family: 'Caveat', cursive;
+  font-size: clamp(11px, 1.8%, 15px);
+  color: #3b2007;
+  line-height: 1.4;
+  box-shadow: 3px 5px 14px rgba(0, 0, 0, 0.45);
+  z-index: 15;
+}
+
+.sb-sticky--wide {
+  min-width: 38%;
+}
+
+/* Heading */
+.sb-heading {
+  position: absolute;
+  font-family: 'Caveat', cursive;
+  font-size: clamp(16px, 3.5%, 26px);
+  font-weight: 700;
+  color: #fef08a;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+  z-index: 10;
+  top: 6%;
+  left: 5%;
+}
+
+.sb-heading--right {
+  left: auto;
+  right: 5%;
+  text-align: right;
+}
+
+/* Doodle text */
+.sb-doodle {
+  position: absolute;
+  font-family: 'Caveat', cursive;
+  font-size: clamp(13px, 2.5%, 20px);
+  z-index: 10;
+}
+
+.sb-doodle--stars {
+  color: #fbbf24;
+  bottom: 6%;
+  left: 5%;
+}
+
+.sb-doodle--hearts {
+  color: #f87171;
+  bottom: 6%;
+  right: 5%;
+}
+
+/* Quote card */
+.sb-quote-card {
+  position: absolute;
+  top: 18%;
+  left: 8%;
+  right: 8%;
+  background: rgba(255, 253, 240, 0.08);
+  border: 1.5px solid rgba(255, 240, 160, 0.25);
+  border-radius: 10px;
+  padding: 5% 6%;
+  backdrop-filter: blur(4px);
+  z-index: 12;
+}
+
+.sb-quote-text {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(14px, 3%, 22px);
+  color: #fef9ec;
+  line-height: 1.65;
+  text-align: center;
+}
+
+.sb-quote-sig {
+  display: block;
+  font-family: 'Caveat', cursive;
+  font-size: clamp(12px, 2.2%, 17px);
+  color: #fbbf24;
+  text-align: right;
+  margin-top: 8%;
+}
+
+/* Postcard wrapper */
+.sb-postcard {
+  position: absolute;
+  top: 28%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4%;
+  z-index: 12;
+}
+
+.sb-postcard .sb-el {
+  position: relative;
+  width: 100%;
+}
+
+.sb-postcard__caption {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(11px, 2%, 16px);
+  color: #fef3c7;
+  text-align: center;
+}
+
+/* 2×2 mini polaroid grid */
+.sb-grid-2 {
+  position: absolute;
+  top: 18%;
+  left: 5%;
+  right: 5%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4%;
+  z-index: 12;
+}
+
+.sb-mini-polaroid {
+  background: #fff;
+  padding: 4% 4% 10% 4%;
+  box-shadow: 4px 6px 16px rgba(0, 0, 0, 0.55);
+  transform: rotate(-2deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sb-mini-polaroid--tilted {
+  transform: rotate(2.5deg);
+}
+
+.sb-mini-polaroid--tilt-r {
+  transform: rotate(-1.5deg);
+}
+
+.sb-mini-polaroid img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+}
+
+.sb-mini-polaroid span {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(9px, 1.8%, 13px);
+  color: #2d4a35;
+  margin-top: 4%;
+  font-weight: 600;
+}
+
+/* Closing block */
+.sb-closing {
+  position: absolute;
+  top: 18%;
+  left: 6%;
+  right: 6%;
+  z-index: 14;
+}
+
+.sb-closing__text {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(15px, 3.2%, 24px);
+  color: #fef9ec;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.sb-closing__text strong {
+  color: #fbbf24;
+  font-size: 1.15em;
+}
+
+.sb-closing__fin {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Caveat', cursive;
+  font-size: clamp(12px, 2.5%, 18px);
+  color: #fbbf24;
+  letter-spacing: 0.15em;
+  z-index: 14;
+}
+
+/* ── PAGE 1  — Cover ─────────────────────────────────────── */
+.sb-cover__title {
+  top: 6%;
+  left: 3%;
+  width: 64%;
+  z-index: 12;
+  transform: rotate(-1.5deg);
+}
+
+.sb-cover__sunset {
+  top: 8%;
+  right: 3%;
+  width: 28%;
+  z-index: 11;
+  transform: rotate(2deg);
+}
+
+.sb-cover__butterfly {
+  top: 30%;
+  right: 4%;
+  width: 18%;
+  z-index: 13;
+}
+
+.sb-cover__main {
+  top: 33%;
+  left: 12%;
+  width: 68%;
+  z-index: 10;
+  transform: rotate(-2.5deg);
+}
+
+.sb-cover__note {
+  top: 44%;
+  left: 1%;
+  width: 28%;
+  z-index: 11;
+  transform: rotate(1deg);
+}
+
+.sb-cover__grateful {
+  top: 68%;
+  right: 3%;
+  width: 28%;
+  z-index: 11;
+}
+
+.sb-cover__flower {
+  bottom: 4%;
+  left: 5%;
+  width: 17%;
+  z-index: 11;
+}
+
+.sb-cover__star {
+  bottom: 5%;
+  left: 48%;
+  width: 12%;
+  z-index: 11;
+}
+
+.sb-cover__smiley {
+  bottom: 4%;
+  right: 8%;
+  width: 16%;
+  z-index: 11;
+}
+
+.sb-cover__heart {
+  top: 30%;
+  left: 5%;
+  width: 8%;
+  z-index: 13;
+}
+
+/* ── PAGE 2 ──────────────────────────────────────────────── */
+.sb-p2__photo {
+  top: 16%;
+  left: 10%;
+  width: 70%;
+  z-index: 10;
+  transform: rotate(-1.5deg);
+  background: white;
+  padding: 3% 3% 10% 3%;
+  box-shadow: 6px 8px 22px rgba(0, 0, 0, 0.55);
+}
+
+.sb-p2__sticky {
+  bottom: 18%;
+  left: 6%;
+  width: 38%;
+  transform: rotate(2deg);
+}
+
+.sb-p2__flower {
+  bottom: 14%;
+  right: 5%;
+  width: 16%;
+  z-index: 11;
+}
+
+.sb-p2__butterfly {
+  top: 8%;
+  right: 4%;
+  width: 16%;
+  z-index: 13;
+}
+
+.sb-p2__heart {
+  bottom: 25%;
+  left: 52%;
+  width: 7%;
+  z-index: 11;
+}
+
+/* ── PAGE 3 ──────────────────────────────────────────────── */
+.sb-p3__title {
+  top: 5%;
+  left: 4%;
+  width: 55%;
+  z-index: 12;
+  transform: rotate(-1deg);
+}
+
+.sb-p3__sticky {
+  bottom: 12%;
+  left: 5%;
+  width: 40%;
+  transform: rotate(-2deg);
+}
+
+.sb-p3__smiley {
+  bottom: 10%;
+  right: 6%;
+  width: 15%;
+  z-index: 11;
+}
+
+.sb-p3__star {
+  bottom: 12%;
+  right: 24%;
+  width: 11%;
+  z-index: 11;
+}
+
+/* ── PAGE 4 ──────────────────────────────────────────────── */
+.sb-p4__flower {
+  bottom: 4%;
+  left: 4%;
+  width: 14%;
+  z-index: 11;
+}
+
+.sb-p4__butterfly {
+  bottom: 4%;
+  right: 4%;
+  width: 14%;
+  z-index: 13;
+}
+
+/* ── PAGE 5 ──────────────────────────────────────────────── */
+.sb-p5__grateful {
+  top: 6%;
+  right: 4%;
+  width: 28%;
+  z-index: 12;
+}
+
+.sb-p5__heart {
+  bottom: 10%;
+  left: 5%;
+  width: 7%;
+  z-index: 11;
+}
+
+.sb-p5__smiley {
+  bottom: 8%;
+  right: 6%;
+  width: 14%;
+  z-index: 11;
+}
+
+/* ── PAGE 6 ──────────────────────────────────────────────── */
+.sb-p6__note {
+  top: 6%;
+  left: 4%;
+  width: 30%;
+  z-index: 12;
+  transform: rotate(1.5deg);
+}
+
+.sb-p6__sticky {
+  top: 28%;
+  left: 12%;
+  width: 50%;
+  transform: rotate(-1deg);
+}
+
+.sb-p6__butterfly {
+  top: 6%;
+  right: 4%;
+  width: 16%;
+  z-index: 13;
+}
+
+.sb-p6__star1 {
+  bottom: 12%;
+  left: 8%;
+  width: 11%;
+  z-index: 11;
+}
+
+.sb-p6__star2 {
+  bottom: 12%;
+  left: 22%;
+  width: 11%;
+  z-index: 11;
+  transform: rotate(20deg);
+}
+
+.sb-p6__flower {
+  bottom: 6%;
+  right: 6%;
+  width: 15%;
+  z-index: 11;
+}
+
+/* ── PAGE 7 ──────────────────────────────────────────────── */
+.sb-p7__title {
+  top: 4%;
+  left: 4%;
+  width: 58%;
+  z-index: 12;
+  transform: rotate(-1.5deg);
+}
+
+.sb-p7__photo {
+  top: 36%;
+  left: 18%;
+  width: 62%;
+  z-index: 10;
+  transform: rotate(-2deg);
+  background: white;
+  padding: 2.5% 2.5% 9% 2.5%;
+  box-shadow: 6px 8px 22px rgba(0, 0, 0, 0.55);
+}
+
+.sb-p7__flower {
+  bottom: 4%;
+  left: 5%;
+  width: 14%;
+  z-index: 11;
+}
+
+.sb-p7__smiley {
+  bottom: 4%;
+  right: 6%;
+  width: 14%;
+  z-index: 11;
+}
+
+.sb-p7__heart {
+  top: 26%;
+  right: 5%;
+  width: 7%;
+  z-index: 11;
+}
+
+.sb-p7__butterfly {
+  top: 5%;
+  right: 4%;
+  width: 14%;
+  z-index: 13;
+}
+
+/* ── Navigation arrows ───────────────────────────────────── */
+.sb-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  z-index: 50;
+  padding: 0;
+}
+
+.sb-nav svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+}
+
+.sb-nav--prev {
+  left: clamp(8px, 3vw, 40px);
+}
+
+.sb-nav--next {
+  right: clamp(8px, 3vw, 40px);
+}
+
+.sb-nav:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.sb-nav:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+/* On narrow screens move arrows to bottom corners */
+@media (max-width: 600px) {
+  .sb-nav {
+    top: auto;
+    transform: none;
+    bottom: 36px;
+    width: 42px;
+    height: 42px;
+  }
+
+  .sb-nav--prev {
+    left: 16px;
+  }
+
+  .sb-nav--next {
+    right: 16px;
+  }
+
+  .sb-nav:hover:not(:disabled) {
+    transform: scale(1.08);
+  }
+}
+
+/* ── Page counter ────────────────────────────────────────── */
+.sb-counter {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  z-index: 50;
+}
+
+.sb-counter__track {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.sb-counter__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.25s, transform 0.25s;
+}
+
+.sb-counter__dot--active {
+  background: #fbbf24;
+  transform: scale(1.35);
+}
+
+.sb-counter__dot:hover:not(.sb-counter__dot--active) {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.sb-counter__label {
+  font-family: 'Caveat', cursive;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.08em;
+}
+
+/* ── Inner pages — restore scroll ───────────── */
+
+.photos-page,
+.messages-page,
+.about-page {
+  min-height: 100vh;
+  padding-top: 60px;
+  overflow-y: auto;
+}
+
+.page-content {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 28px 64px;
+}
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.page-enter {
+  animation: pageIn 0.4s ease-out both;
+}
+
+.photos-page h1,
+.messages-page h1,
+.about-page h1 {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(34px, 4.5vw, 56px);
+  color: var(--nav-text);
+  text-align: center;
+  margin-bottom: 36px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+/* Message form */
+.message-form {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 32px;
+}
+
+.message-form input,
+.message-form textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: var(--nav-text);
+  font-family: 'Caveat', cursive;
+  font-size: 18px;
+  margin-bottom: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.message-form input::placeholder,
+.message-form textarea::placeholder {
+  color: rgba(232, 213, 163, 0.4);
+}
+
+.message-form input:focus,
+.message-form textarea:focus {
+  border-color: rgba(212, 168, 67, 0.6);
+}
+
+.message-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.message-form button {
+  background: var(--gold);
+  color: #1a2e1e;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 28px;
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.message-form button:hover {
+  background: #e0b94f;
+  transform: translateY(-1px);
+}
+
+.message-card {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+}
+
+.message-card .author {
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.message-card .content {
+  font-family: 'Caveat', cursive;
+  font-size: 18px;
+  color: var(--nav-text);
+  line-height: 1.5;
+}
+
+.message-card .time {
+  font-size: 12px;
+  color: rgba(232, 213, 163, 0.35);
+  margin-top: 8px;
+}
+
+.about-page .page-content {
+  text-align: center;
+}
+
+.about-page p {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(18px, 2vw, 24px);
+  color: var(--nav-text);
+  line-height: 1.7;
+  opacity: 0.85;
+}
