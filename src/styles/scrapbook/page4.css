@@ -317,18 +317,18 @@
   pointer-events: none;
 }
 
-/* Page 9 Mabel active note wrap */
+/* Page 9 Mabel active note wrap - kept behind collage images in original position */
 .sb-page--nine .sb-p9__note-wrap {
-  top: 32%;
-  right: 5%;
-  width: 33%;
-  z-index: 15;
+  top: 34%;
+  right: 6%;
+  width: 32%;
+  z-index: 3;
   cursor: pointer;
   pointer-events: auto;
 }
 
 .sb-page--nine .sb-p9__note-wrap:hover {
-  z-index: 25;
+  z-index: 4;
 }
 
 
