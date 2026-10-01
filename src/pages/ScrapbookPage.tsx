@@ -122,6 +122,109 @@ export const GBEMI_GALLERY_IMAGES = [
   gbemiPhoto6,
 ];
 
+// All images and visual assets across all scrapbook pages to preload & bake in memory
+const ALL_SCRAPBOOK_MEDIA: string[] = [
+  // Page 1 (Cover)
+  birthdayNote,
+  smallNote,
+  sunsetPolaroid,
+  butterfly,
+  gratefulText,
+  flower,
+  yellowHeart,
+  blueStar,
+  smiley,
+  mainPolaroid,
+  // Page 2
+  p2Bg,
+  p2TopNote,
+  p2BottomNote,
+  p2Smiley,
+  p2Daisy,
+  p2PurpleFlower,
+  p2PinkHeart,
+  p2YellowStar,
+  p2TapeRight,
+  p2TapeBottomL,
+  p2GreenTape,
+  p2PurpleTape,
+  p2Strawberry,
+  p2HeartsTop,
+  p2StarDoodleTop,
+  p2HeartDoodleL,
+  p2StarDoodleLow,
+  p2PolaroidFrame,
+  p2Photo,
+  p2Ribbon,
+  p2BottomSheet,
+  // Page 3
+  p3Bg,
+  p3SageBg,
+  p3NewsTop,
+  p3NewsBot,
+  p3BluePaint,
+  p3EnjoyLife,
+  p3Hearts,
+  p3PinkFlower,
+  p3Strawberry,
+  p3Bow,
+  p3Rose,
+  p3BdayText,
+  p3LinesLeft,
+  p3StarRight,
+  p3LinesRight,
+  p3Bunny,
+  p3Photo,
+  sophie1,
+  sophie2,
+  sophie3,
+  praise1,
+  praise2,
+  melody1,
+  melody2,
+  elPraiseNote,
+  // Page 4
+  tonyPhoto,
+  tlhPhoto,
+  mabel1,
+  mabel2,
+  mabel3,
+  p4Bg,
+  p4QuotePaper,
+  p4LinedNote,
+  p4LeftFlower,
+  p4LowerFlower,
+  p4OrangeTape,
+  p4BdayLettering,
+  p4BottomMessage,
+  p4LowerLeftTape,
+  // Page 5
+  p5Bg,
+  p5GoodFriendsNote,
+  p5TopTape,
+  p5CameraSticker,
+  p5Sunflower,
+  divinePhoto,
+  p5StripTape,
+  p5FlowerBundle,
+  p5Butterfly,
+  p5SmallNote,
+  p5GreenTape,
+  p5LeftHeart,
+  p5RightHeart,
+  p5AccentLines,
+  // Page 6
+  p6Bg,
+  p6Badge,
+  p6Note,
+  p6Polaroid,
+  p6CamoCorner,
+  p6Binoculars,
+  gbemiMain,
+  gbemiGallery,
+  ...GBEMI_GALLERY_IMAGES,
+];
+
 import {
   PAGE_2_NOTE,
   PAGE_7_NOTE,
@@ -898,12 +1001,71 @@ export default function ScrapbookPage() {
   const [activeNote, setActiveNote] = useState<NoteMessage | null>(null);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isPreloaded, setIsPreloaded] = useState(false);
+  const [preloadProgress, setPreloadProgress] = useState(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const touchStartX = useRef<number | null>(null);
 
+  // Asset preloading & baking effect
+  useEffect(() => {
+    let isMounted = true;
+    const totalAssets = ALL_SCRAPBOOK_MEDIA.length;
+    let loadedCount = 0;
+
+    const updateProgress = () => {
+      loadedCount++;
+      if (isMounted) {
+        setPreloadProgress(Math.min(100, Math.round((loadedCount / totalAssets) * 100)));
+      }
+    };
+
+    // Preload all visual media in parallel into the browser cache
+    const promises = ALL_SCRAPBOOK_MEDIA.map((src) => {
+      return new Promise<void>((resolve) => {
+        const img = new Image();
+        img.src = src;
+        if (img.complete) {
+          updateProgress();
+          resolve();
+        } else {
+          img.onload = () => {
+            updateProgress();
+            resolve();
+          };
+          img.onerror = () => {
+            updateProgress();
+            resolve(); // Don't block whole experience on an isolated asset error
+          };
+        }
+      });
+    });
+
+    // Fallback timer: Never leave user stuck on slow connection (max 3.5s)
+    const safetyTimeout = setTimeout(() => {
+      if (isMounted && !isPreloaded) {
+        setIsPreloaded(true);
+      }
+    }, 3500);
+
+    Promise.all(promises).then(() => {
+      if (isMounted) {
+        // Small pause at 100% to let GPU decode textures
+        setTimeout(() => {
+          if (isMounted) setIsPreloaded(true);
+        }, 250);
+      }
+    });
+
+    return () => {
+      isMounted = false;
+      clearTimeout(safetyTimeout);
+    };
+  }, []);
+
   // Background music management
   useEffect(() => {
+    if (!isPreloaded) return;
     const audio = audioRef.current;
     if (!audio) return;
 
@@ -942,7 +1104,7 @@ export default function ScrapbookPage() {
       window.removeEventListener("pointerdown", handleFirstInteraction);
       window.removeEventListener("keydown", handleFirstInteraction);
     };
-  }, []);
+  }, [isPreloaded]);
 
   const toggleMusic = () => {
     const audio = audioRef.current;
@@ -1007,14 +1169,43 @@ export default function ScrapbookPage() {
   const page = PAGES[current];
 
   return (
-    <div
-      className="sb-viewer"
-      style={{ "--sb-bg": page.bg } as React.CSSProperties}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-    >
-      {/* ── Book canvas with tactile 3D perspective ── */}
-      <div className="sb-book">
+    <>
+      {/* ── Preload & Texture Baking Screen ── */}
+      <div
+        className={`sb-preloader ${isPreloaded ? "sb-preloader--done" : ""}`}
+        aria-hidden={isPreloaded}
+      >
+        <div className="sb-preloader__card">
+          <div className="sb-preloader__tape" />
+          <div className="sb-preloader__icon-box">
+            <span className="sb-preloader__book-icon">📖</span>
+          </div>
+          <h2 className="sb-preloader__title">Opening Hillary's Scrapbook...</h2>
+          <p className="sb-preloader__status">
+            {preloadProgress < 100
+              ? `Gathering precious memories & polaroids... (${preloadProgress}%)`
+              : "Almost ready! Unfolding the first page... ✨"}
+          </p>
+          <div className="sb-preloader__progress-bar">
+            <div
+              className="sb-preloader__progress-fill"
+              style={{ width: `${preloadProgress}%` }}
+            />
+          </div>
+          <div className="sb-preloader__count">
+            {preloadProgress}% baked
+          </div>
+        </div>
+      </div>
+
+      <div
+        className={`sb-viewer ${isPreloaded ? "sb-viewer--ready" : ""}`}
+        style={{ "--sb-bg": page.bg } as React.CSSProperties}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
+        {/* ── Book canvas with tactile 3D perspective ── */}
+        <div className="sb-book">
         {animState ? (
           <>
             {/* Underlying Page: already visible beneath while turning */}
@@ -1134,5 +1325,6 @@ export default function ScrapbookPage() {
         images={GBEMI_GALLERY_IMAGES}
       />
     </div>
+    </>
   );
 }

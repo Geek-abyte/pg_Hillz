@@ -19,6 +19,7 @@
 @import './styles/scrapbook/viewer.css';
 @import './styles/scrapbook/poetry-modal.css';
 @import './styles/scrapbook/music.css';
+@import './styles/scrapbook/preloader.css';
 
 /* ── 5. Individual Scrapbook Pages ─────────────────────────────────────── */
 @import './styles/scrapbook/page1.css';

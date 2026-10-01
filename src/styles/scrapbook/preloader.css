@@ -1,0 +1,151 @@
+/* ═══════════════════════════════════════════════════════════
+   SCRAPBOOK PRELOADER SCREEN & BAKE OVERLAY
+   Warm, scrapbooking-themed ambient loading screen that ensures
+   all photos, textures, stickers & audio are 100% baked in memory
+   before revealing the book with a cinematic fade-in.
+   ═══════════════════════════════════════════════════════════ */
+
+.sb-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #0b170e;
+  background-image: 
+    radial-gradient(ellipse at 50% 30%, rgba(35, 60, 42, 0.6) 0%, rgba(11, 23, 14, 0.95) 75%),
+    radial-gradient(circle at 80% 80%, rgba(251, 191, 36, 0.08) 0%, transparent 50%);
+  padding: 24px;
+  user-select: none;
+  transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sb-preloader--done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.sb-preloader__card {
+  position: relative;
+  max-width: 440px;
+  width: 100%;
+  background: rgba(254, 249, 236, 0.05);
+  border: 1.5px dashed rgba(251, 191, 36, 0.35);
+  border-radius: 16px;
+  padding: clamp(28px, 5vw, 42px) clamp(20px, 4vw, 36px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 
+    0 24px 60px rgba(0, 0, 0, 0.6),
+    0 4px 16px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Washi tape topper */
+.sb-preloader__tape {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1deg);
+  width: 110px;
+  height: 26px;
+  background: rgba(245, 158, 11, 0.7);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  border-radius: 2px;
+}
+
+/* Book flipping / memory fluttering animation icon */
+.sb-preloader__icon-box {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sb-preloader__book-icon {
+  font-size: 38px;
+  animation: bookFlutter 2s ease-in-out infinite;
+  display: inline-block;
+  filter: drop-shadow(0 4px 12px rgba(251, 191, 36, 0.4));
+}
+
+@keyframes bookFlutter {
+  0%, 100% {
+    transform: translateY(0) scale(1) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.08) rotate(4deg);
+  }
+}
+
+.sb-preloader__title {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(28px, 5vw, 36px);
+  font-weight: 700;
+  color: #fef08a;
+  margin: 0 0 6px 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.02em;
+}
+
+.sb-preloader__status {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 13.5px;
+  color: rgba(254, 249, 236, 0.75);
+  margin: 0 0 24px 0;
+  min-height: 20px;
+  letter-spacing: 0.01em;
+}
+
+/* Scrapbook progress track */
+.sb-preloader__progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.sb-preloader__progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f59e0b, #fbbf24, #fef08a);
+  border-radius: 999px;
+  transition: width 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 0 12px rgba(251, 191, 36, 0.6);
+}
+
+.sb-preloader__count {
+  font-family: 'Caveat', cursive;
+  font-size: 17px;
+  color: #fbbf24;
+  margin-top: 14px;
+  letter-spacing: 0.04em;
+}
+
+/* Smooth reveal transition on the viewer canvas */
+.sb-viewer--ready {
+  animation: sbFadeInReady 0.5s ease-out forwards;
+}
+
+@keyframes sbFadeInReady {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
