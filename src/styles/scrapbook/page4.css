@@ -305,4 +305,17 @@
   pointer-events: none;
 }
 
+/* Reposition lower flower on Page 9 to bottom-left accent so it never blocks mabel3 */
+.sb-page--nine .sb-p4__lower-flower {
+  top: auto;
+  bottom: 12%;
+  right: auto;
+  left: 6%;
+  width: 22%;
+  z-index: 12;
+  transform: rotate(-15deg);
+  pointer-events: none;
+}
+
+
 

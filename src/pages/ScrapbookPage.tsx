@@ -66,10 +66,12 @@ import elPraiseNote from "../assets/el-praise/note.png";
 /* ── Page 4 assets ───────────────────────────────────────── */
 import tonyPhoto from "../assets/tony/tony.png";
 import tlhPhoto from "../assets/TLH.png";
+import mabel1 from "../assets/mabel/mabel1.png";
+import mabel2 from "../assets/mabel/mabel2.png";
+import mabel3 from "../assets/mabel/mabel3.png";
 import p4Bg from "../assets/page4/00_background_reconstructed.jpeg";
 import p4QuotePaper from "../assets/page4/02_quote_paper.png";
 import p4LinedNote from "../assets/page4/06_right_lined_note.png";
-import p4LowerFrame from "../assets/page4/07_lower_polaroid_frame.png";
 import p4LeftFlower from "../assets/page4/09_left_flower.png";
 import p4LowerFlower from "../assets/page4/10_lower_flower.png";
 import p4OrangeTape from "../assets/page4/11_orange_tape.png";
@@ -749,7 +751,7 @@ const PAGES: ScrapbookPageDef[] = [
     id: 9,
     bg: "#1c2b22",
     render: () => (
-      <div className="sb-page sb-page--four">
+      <div className="sb-page sb-page--four sb-page--nine">
         {/* Full-bleed background */}
         <img src={p4Bg} className="sb-p4__bg" alt="" draggable={false} />
 
@@ -762,19 +764,26 @@ const PAGES: ScrapbookPageDef[] = [
         {/* Lined kraft notebook note on right */}
         <img src={p4LinedNote} className="sb-el sb-p4__lined-note" alt="Same energy. Bigger dreams. Always you." draggable={false} />
 
-        {/* Lower polaroid (main focus) */}
-        <div className="sb-el sb-p4__lower-polaroid sb-p4__lower-polaroid--single">
-          <img src={p4LowerFrame} className="sb-p4__lower-polaroid-frame" alt="" draggable={false} />
+        {/* 3 Photos from Mabel folder arranged in a dynamic collage */}
+        {/* Photo 1: Upper right */}
+        <div className="sb-el sb-p9__photo-wrap sb-p9__photo-wrap--1">
+          <img src={mabel1} className="sb-p9__photo-img" alt="Mabel & Hillary 1" draggable={false} />
         </div>
+        <img src={p4OrangeTape} className="sb-el sb-p9__tape-1" alt="" draggable={false} />
 
-        {/* Masking tape on bottom-left corner of lower polaroid */}
-        <img src={p4LowerLeftTape} className="sb-el sb-p4__lower-left-tape" alt="" draggable={false} />
+        {/* Photo 2: Mid-left hero */}
+        <div className="sb-el sb-p9__photo-wrap sb-p9__photo-wrap--2">
+          <img src={mabel2} className="sb-p9__photo-img" alt="Mabel & Hillary 2" draggable={false} />
+        </div>
+        <img src={p4LowerLeftTape} className="sb-el sb-p9__tape-2" alt="" draggable={false} />
+
+        {/* Photo 3: Lower right overlapping */}
+        <div className="sb-el sb-p9__photo-wrap sb-p9__photo-wrap--3">
+          <img src={mabel3} className="sb-p9__photo-img" alt="Mabel & Hillary 3" draggable={false} />
+        </div>
 
         {/* Lower flower cluster overlapping polaroid & note */}
         <img src={p4LowerFlower} className="sb-el sb-p4__lower-flower" alt="" draggable={false} />
-
-        {/* Crinkled orange tape holding the lower flower */}
-        <img src={p4OrangeTape} className="sb-el sb-p4__orange-tape" alt="" draggable={false} />
 
         {/* "BIRTHDAY GIRL" lettering */}
         <img src={p4BdayLettering} className="sb-el sb-p4__bday-lettering" alt="BIRTHDAY GIRL" draggable={false} />
