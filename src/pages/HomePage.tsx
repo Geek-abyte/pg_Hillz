@@ -30,20 +30,20 @@ export default function HomePage() {
 
         {/* Main interactive polaroid photo */}
         <Link
-          to="/photos"
+          to="/scrapbook"
           className="el main-polaroid interactive-polaroid"
-          title="Click to view our memories!"
-          aria-label="View our photo memories"
+          title="Click to view our scrapbook!"
+          aria-label="View our scrapbook"
         >
           <img src={mainPolaroid} alt="Hillary" draggable={false} />
         </Link>
 
         {/* Eye-catching animated 'Click here' Lead — sits inside polaroid space */}
         <Link
-          to="/photos"
+          to="/scrapbook"
           className="el click-lead"
-          aria-label="Click here to explore memories"
-          title="Click here to view our memories!"
+          aria-label="Click here to explore scrapbook"
+          title="Click here to view our scrapbook!"
         >
           <div className="lead-inner">
             <span className="lead-text">click here! ✨</span>

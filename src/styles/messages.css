@@ -1,104 +1,361 @@
-/* ── Messages Page ───────────────────────────── */
+/* ═══════════════════════════════════════════════════════════
+   MESSAGES PAGE STYLING — Scrapbook Letters & Guestbook
+   ═══════════════════════════════════════════════════════════ */
+
 .messages-page {
   min-height: 100vh;
-  padding-top: 60px;
+  padding-top: calc(var(--navbar-h, 54px) + 16px);
+  padding-bottom: 70px;
   overflow-y: auto;
 }
 
-.messages-page h1 {
-  font-family: 'Caveat', cursive;
-  font-size: clamp(34px, 4.5vw, 56px);
-  color: var(--nav-text);
-  text-align: center;
-  margin-bottom: 36px;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+.messages-page .page-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 24px 60px;
 }
 
-/* Message form */
+/* ── Header ──────────────────────────────────────────────── */
+.messages-header {
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.messages-badge {
+  display: inline-block;
+  font-family: 'Caveat', cursive;
+  font-size: clamp(16px, 1.8vw, 20px);
+  color: #fbbf24;
+  letter-spacing: 0.12em;
+  background: rgba(251, 191, 36, 0.12);
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  border-radius: 30px;
+  padding: 4px 18px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px rgba(251, 191, 36, 0.4);
+}
+
+.messages-header h1 {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(38px, 5.5vw, 62px);
+  color: #fff9e6;
+  text-align: center;
+  margin: 4px 0 12px;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
+  letter-spacing: 0.02em;
+}
+
+.messages-subtitle {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(18px, 2.2vw, 24px);
+  color: #e8d5a3;
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.4;
+  opacity: 0.92;
+}
+
+/* ── Section Titles ──────────────────────────────────────── */
+.section-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(212, 168, 67, 0.25);
+  padding-bottom: 10px;
+}
+
+.section-icon {
+  font-size: 26px;
+}
+
+.section-title {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(26px, 3.2vw, 36px);
+  color: #fbbf24;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Featured Letters Grid ───────────────────────────────── */
+.featured-letters-section {
+  margin-bottom: 60px;
+}
+
+.letters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: clamp(20px, 3vw, 30px);
+}
+
+/* ── Individual Letter Card ──────────────────────────────── */
+.letter-card {
+  position: relative;
+  border-radius: 12px;
+  padding: 26px 22px 20px 22px;
+  cursor: pointer;
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.45),
+    0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.28s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 250px;
+  outline: none;
+}
+
+.letter-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.6),
+    0 0 24px rgba(251, 191, 36, 0.35);
+}
+
+/* Card Themes */
+.letter-card--parchment {
+  background: #fdfaf0;
+  border: 1px solid #e2d7ba;
+  color: #2b261b;
+}
+
+.letter-card--lavender {
+  background: #f4effa;
+  border: 1px solid #dcd1ea;
+  color: #2c223b;
+}
+
+.letter-card--kraft {
+  background: #f7ede2;
+  border: 1px solid #e5d1bd;
+  color: #3b2c1d;
+}
+
+.letter-card--sage {
+  background: #eff5ee;
+  border: 1px solid #cce0cb;
+  color: #1a2f1b;
+}
+
+.letter-card--olive {
+  background: #f2f5e8;
+  border: 1px solid #d7e0c4;
+  color: #273117;
+}
+
+/* Tape on top edge */
+.letter-tape {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 76px;
+  height: 22px;
+  opacity: 0.85;
+  pointer-events: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
+}
+
+.tape--1 {
+  background: rgba(245, 158, 11, 0.6);
+  transform: translateX(-50%) rotate(-2deg);
+}
+
+.tape--2 {
+  background: rgba(147, 51, 234, 0.5);
+  transform: translateX(-50%) rotate(2deg);
+}
+
+.tape--3 {
+  background: rgba(16, 185, 129, 0.5);
+  transform: translateX(-50%) rotate(-1deg);
+}
+
+/* Letter Content */
+.letter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.letter-author {
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  font-weight: 700;
+  color: #92400e;
+}
+
+.letter-relationship {
+  font-family: 'Caveat', cursive;
+  font-size: 15px;
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+.letter-title {
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  line-height: 1.25;
+}
+
+.letter-preview {
+  font-family: 'Caveat', cursive;
+  font-size: 17px;
+  line-height: 1.45;
+  margin: 0 0 16px;
+  opacity: 0.9;
+  flex-grow: 1;
+}
+
+.letter-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(0, 0, 0, 0.15);
+}
+
+.read-full-btn {
+  font-family: 'Caveat', cursive;
+  font-size: 17px;
+  font-weight: 700;
+  color: #b45309;
+}
+
+.page-jump-link {
+  font-family: 'Caveat', cursive;
+  font-size: 15px;
+  font-weight: 700;
+  color: #166534;
+  text-decoration: none;
+  background: rgba(22, 101, 52, 0.1);
+  padding: 3px 10px;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.page-jump-link:hover {
+  background: #166534;
+  color: #fff;
+}
+
+/* ── Guestbook Section ───────────────────────────────────── */
+.guestbook-section {
+  margin-top: 50px;
+}
+
 .message-form {
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 168, 67, 0.3);
+  border-radius: 18px;
   padding: 28px;
-  margin-bottom: 32px;
+  margin-bottom: 36px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
 }
 
 .message-form input,
 .message-form textarea {
   width: 100%;
   background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 10px;
-  padding: 12px 16px;
-  color: var(--nav-text);
+  padding: 14px 18px;
+  color: #fff9e6;
   font-family: 'Caveat', cursive;
-  font-size: 18px;
-  margin-bottom: 14px;
+  font-size: 20px;
+  margin-bottom: 16px;
   outline: none;
-  transition: border-color 0.2s;
+  transition: all 0.2s;
 }
 
 .message-form input::placeholder,
 .message-form textarea::placeholder {
-  color: rgba(232, 213, 163, 0.4);
+  color: rgba(232, 213, 163, 0.5);
 }
 
 .message-form input:focus,
 .message-form textarea:focus {
-  border-color: rgba(212, 168, 67, 0.6);
+  border-color: #fbbf24;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 14px rgba(251, 191, 36, 0.25);
 }
 
 .message-form textarea {
-  min-height: 100px;
+  min-height: 120px;
   resize: vertical;
 }
 
 .message-form button {
-  background: var(--gold);
+  background: linear-gradient(135deg, #fbbf24 0%, #d4a843 100%);
   color: #1a2e1e;
   border: none;
-  border-radius: 10px;
-  padding: 12px 28px;
+  border-radius: 12px;
+  padding: 12px 32px;
   font-family: 'Caveat', cursive;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
 }
 
 .message-form button:hover {
-  background: #e0b94f;
-  transform: translateY(-1px);
+  background: #fbbf24;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 10px 22px rgba(251, 191, 36, 0.45);
 }
 
-/* Message card */
+/* ── Guestbook Entries List ──────────────────────────────── */
+.guest-messages-heading {
+  font-family: 'Caveat', cursive;
+  font-size: 26px;
+  color: #fbbf24;
+  margin-bottom: 18px;
+}
+
 .message-card {
-  background: rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
   padding: 20px 24px;
   margin-bottom: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .message-card .author {
   font-family: 'Caveat', cursive;
-  font-size: 20px;
-  color: var(--gold);
-  font-weight: 600;
+  font-size: 22px;
+  color: #fbbf24;
+  font-weight: 700;
   margin-bottom: 6px;
 }
 
 .message-card .content {
   font-family: 'Caveat', cursive;
-  font-size: 18px;
-  color: var(--nav-text);
+  font-size: 19px;
+  color: #f1ebd9;
   line-height: 1.5;
 }
 
 .message-card .time {
-  font-size: 12px;
-  color: rgba(232, 213, 163, 0.35);
+  font-size: 13px;
+  color: rgba(232, 213, 163, 0.45);
   margin-top: 8px;
+}
+
+/* ── Stickers row ────────────────────────────────────────── */
+.messages-stickers-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(24px, 5vw, 60px);
+  margin-top: 50px;
 }
