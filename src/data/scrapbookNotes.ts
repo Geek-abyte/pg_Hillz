@@ -115,6 +115,20 @@ export const PAGE_8_MELODY_NOTE: NoteMessage = {
   content: `Happy Beautiful birthday Hillalove❤️......you've grown so beautifully and I'm a proud sister`,
 };
 
+export const PAGE_9_NOTE: NoteMessage = {
+  title: "For Hillz💙",
+  author: "Mabel",
+  content: `So, I know we're just getting close but if there's anything human connections has taught me, it's that there's an exceptional beauty in female friendships. And that's what I'm trying to build with you as my friend, Hillz. Ive always admired you from afar and I hoped that someday I'd get close to see the real you.
+
+From one chipmunk to another, I truly wish you the best life has to offer. I hope and pray that God's will be done in your life always and that He grants you the desires of your heart and that's why I'd pray that:
+
+May the Lord bless and keep you, Hillary. May He cause His face to shine upon you and be gracious to you. May He turn His countenance upon you and give you peace and lastly, may you love Jesus first and above all.
+
+Welcome to your 21st. I love you too, don't mention 😏😂💙
+
+2 Dear friend, I pray that you may enjoy good health and that all may go well with you, even as your soul is getting along well.`,
+};
+
 export const PAGE_10_NOTE_1: NoteMessage = {
   title: "Not Forgotten",
   author: "TLH",

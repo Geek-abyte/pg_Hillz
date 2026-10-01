@@ -234,6 +234,7 @@ import {
   PAGE_7_ELPRAISE_NOTE,
   PAGE_11_NOTE,
   PAGE_8_MELODY_NOTE,
+  PAGE_9_NOTE,
   PAGE_10_NOTE_1,
   PAGE_10_NOTE_2,
 } from "../data/scrapbookNotes";
@@ -247,6 +248,7 @@ export {
   PAGE_7_ELPRAISE_NOTE,
   PAGE_11_NOTE,
   PAGE_8_MELODY_NOTE,
+  PAGE_9_NOTE,
   PAGE_10_NOTE_1,
   PAGE_10_NOTE_2,
 };
@@ -748,7 +750,7 @@ const PAGES: ScrapbookPageDef[] = [
   {
     id: 9,
     bg: "#1c2b22",
-    render: () => (
+    render: (onOpenNote) => (
       <div className="sb-page sb-page--four sb-page--nine">
         {/* Full-bleed background */}
         <img src={p4Bg} className="sb-p4__bg" alt="" draggable={false} />
@@ -759,8 +761,21 @@ const PAGES: ScrapbookPageDef[] = [
         {/* Tall dried flower stem on the left */}
         <img src={p4LeftFlower} className="sb-el sb-p4__left-flower" alt="" draggable={false} />
 
-        {/* Lined kraft notebook note on right */}
-        <img src={p4LinedNote} className="sb-el sb-p4__lined-note" alt="Same energy. Bigger dreams. Always you." draggable={false} />
+        {/* Lined kraft notebook note on right (Active note from Mabel) */}
+        <div
+          className="sb-el sb-p4__note-wrap sb-p9__note-wrap"
+          onClick={() => onOpenNote(PAGE_9_NOTE)}
+          role="button"
+          tabIndex={0}
+          aria-label="Read note from Mabel"
+        >
+          <img
+            src={p4LinedNote}
+            className="sb-p4__note-img sb-active-note"
+            alt="Note from Mabel"
+            draggable={false}
+          />
+        </div>
 
         {/* 3 Photos from Mabel folder arranged in a dynamic collage */}
         {/* Photo 1: Upper right */}

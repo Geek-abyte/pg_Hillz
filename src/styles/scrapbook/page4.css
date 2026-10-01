@@ -317,5 +317,19 @@
   pointer-events: none;
 }
 
+/* Page 9 Mabel active note wrap */
+.sb-page--nine .sb-p9__note-wrap {
+  top: 32%;
+  right: 5%;
+  width: 33%;
+  z-index: 15;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.sb-page--nine .sb-p9__note-wrap:hover {
+  z-index: 25;
+}
+
 
 
