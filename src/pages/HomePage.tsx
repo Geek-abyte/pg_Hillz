@@ -12,6 +12,11 @@ import blueStar from "../assets/main_page_assets/08_blue_star.png";
 import smiley from "../assets/main_page_assets/09_smiley.png";
 import mainPolaroid from "../assets/main_page_assets/12_main_polaroid.png";
 
+// Prefetch the Scrapbook route when user hovers or is likely to tap
+const prefetchScrapbook = () => {
+  import("./ScrapbookPage");
+};
+
 export default function HomePage() {
   return (
     // Full-screen background (texture always covers 100vw × 100vh)
@@ -21,7 +26,7 @@ export default function HomePage() {
       <div className="board-content">
 
         <div className="el birthday-note">
-          <img src={birthdayNote} alt="Happy Birthday Hillary" draggable={false} />
+          <img src={birthdayNote} alt="Happy Birthday Hillary" fetchPriority="high" draggable={false} />
         </div>
 
         <div className="el sunset-polaroid">
@@ -34,8 +39,10 @@ export default function HomePage() {
           className="el main-polaroid interactive-polaroid"
           title="Click to view our scrapbook!"
           aria-label="View our scrapbook"
+          onMouseEnter={prefetchScrapbook}
+          onTouchStart={prefetchScrapbook}
         >
-          <img src={mainPolaroid} alt="Hillary" draggable={false} />
+          <img src={mainPolaroid} alt="Hillary" fetchPriority="high" draggable={false} />
         </Link>
 
         {/* Eye-catching animated 'Click here' Lead — sits inside polaroid space */}
@@ -44,6 +51,8 @@ export default function HomePage() {
           className="el click-lead"
           aria-label="Click here to explore scrapbook"
           title="Click here to view our scrapbook!"
+          onMouseEnter={prefetchScrapbook}
+          onTouchStart={prefetchScrapbook}
         >
           <div className="lead-inner">
             <span className="lead-text">click here! ✨</span>

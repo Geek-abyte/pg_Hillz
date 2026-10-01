@@ -11,6 +11,13 @@ const navItems = [
   { label: "Scrapbook", path: "/scrapbook" },
 ];
 
+const routePrefetchers: Record<string, () => void> = {
+  "/": () => { import("../pages/HomePage"); },
+  "/photos": () => { import("../pages/PhotosPage"); },
+  "/messages": () => { import("../pages/MessagesPage"); },
+  "/scrapbook": () => { import("../pages/ScrapbookPage"); },
+};
+
 export default function Navbar() {
   const location = useLocation();
 
@@ -23,9 +30,16 @@ export default function Navbar() {
             location.pathname === item.path ||
             (item.path === "/scrapbook" && location.pathname === "/about");
 
+          const prefetch = routePrefetchers[item.path];
+
           return (
             <li key={item.path}>
-              <Link to={item.path} className={isActive ? "active" : ""}>
+              <Link
+                to={item.path}
+                className={isActive ? "active" : ""}
+                onMouseEnter={prefetch}
+                onTouchStart={prefetch}
+              >
                 {item.label}
               </Link>
             </li>

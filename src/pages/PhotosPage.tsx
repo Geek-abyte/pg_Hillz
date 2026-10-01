@@ -337,7 +337,8 @@ export default function PhotosPage() {
                   <img
                     src={photo.src}
                     alt={photo.caption}
-                    loading="lazy"
+                    loading={i < 4 ? "eager" : "lazy"}
+                    decoding="async"
                     draggable={false}
                   />
                   <div className="photo-zoom-hint">🔍 Expand</div>

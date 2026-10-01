@@ -5,7 +5,7 @@ import flower from "../assets/main_page_assets/06_flower.png";
 import yellowHeart from "../assets/main_page_assets/07_yellow_heart.png";
 import smiley from "../assets/main_page_assets/09_smiley.png";
 
-// Import all notes from ScrapbookPage
+// Import all notes from dedicated data file
 import {
   PAGE_2_NOTE,
   PAGE_3_NOTE,
@@ -17,7 +17,7 @@ import {
   PAGE_10_NOTE_2,
   PAGE_11_NOTE,
   PAGE_7_NOTE,
-} from "./ScrapbookPage";
+} from "../data/scrapbookNotes";
 
 export interface FeaturedScrapbookMessage {
   id: string;
