@@ -111,6 +111,7 @@ import gbemiPhoto4 from "../assets/gbemi/WhatsApp Image 2026-09-30 at 19.02.35.j
 import gbemiPhoto5 from "../assets/gbemi/WhatsApp Image 2026-10-01 at 08.26.39.jpeg";
 import gbemiPhoto6 from "../assets/gbemi/WhatsApp Image 2026-10-01 at 08.26.40.jpeg";
 import BentoGalleryModal from "../components/BentoGalleryModal";
+import bgSong from "../assets/music/song.mp3";
 
 export const GBEMI_GALLERY_IMAGES = [
   gbemiPhoto1,
@@ -1002,8 +1003,63 @@ export default function ScrapbookPage() {
   const [animState, setAnimState] = useState<AnimState | null>(null);
   const [activeNote, setActiveNote] = useState<NoteMessage | null>(null);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const touchStartX = useRef<number | null>(null);
+
+  // Background music management
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    audio.volume = 0.5;
+
+    const playAudio = () => {
+      audio
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch(() => {
+          // Autoplay policy prevented immediate playback; wait for user interaction
+          setIsPlaying(false);
+        });
+    };
+
+    // Try playing immediately
+    playAudio();
+
+    // If blocked by browser autoplay policy, start on first click or touch anywhere on the page
+    const handleFirstInteraction = () => {
+      if (audio.paused) {
+        audio
+          .play()
+          .then(() => setIsPlaying(true))
+          .catch(() => {});
+      }
+      window.removeEventListener("pointerdown", handleFirstInteraction);
+      window.removeEventListener("keydown", handleFirstInteraction);
+    };
+
+    window.addEventListener("pointerdown", handleFirstInteraction);
+    window.addEventListener("keydown", handleFirstInteraction);
+
+    return () => {
+      audio.pause();
+      window.removeEventListener("pointerdown", handleFirstInteraction);
+      window.removeEventListener("keydown", handleFirstInteraction);
+    };
+  }, []);
+
+  const toggleMusic = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (audio.paused) {
+      audio.play().then(() => setIsPlaying(true)).catch(() => {});
+    } else {
+      audio.pause();
+      setIsPlaying(false);
+    }
+  };
 
   const goTo = (next: number, dir: Dir) => {
     if (animState || next < 0 || next >= PAGES.length || next === current) return;
@@ -1096,6 +1152,35 @@ export default function ScrapbookPage() {
           </div>
         )}
       </div>
+
+      {/* ── Background Music Element ── */}
+      <audio ref={audioRef} src={bgSong} loop preload="auto" />
+
+      {/* ── Music Toggle Button ── */}
+      <button
+        className={`sb-music-toggle ${isPlaying ? "sb-music-toggle--playing" : ""}`}
+        onClick={toggleMusic}
+        title={isPlaying ? "Mute music" : "Play music"}
+        aria-label={isPlaying ? "Mute music" : "Play music"}
+      >
+        <span className="sb-music-toggle__icon">
+          {isPlaying ? (
+            <svg viewBox="0 0 24 24">
+              <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+            </svg>
+          ) : (
+            <svg viewBox="0 0 24 24">
+              <path d="M4.27 3L3 4.27l9 9v.28c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4v-1.73l4.27 4.27c-.41.28-.86.5-1.34.62l1.37 1.37c.7-.22 1.36-.57 1.93-1.02L20.73 21 22 19.73 4.27 3zM14 7h4V3h-6v4.18l2 2V7z" />
+            </svg>
+          )}
+        </span>
+        <span className="sb-music-bars">
+          <span />
+          <span />
+          <span />
+        </span>
+        <span className="sb-music-label">{isPlaying ? "Music On" : "Music Off"}</span>
+      </button>
 
       {/* ── Nav arrows ── */}
       <button

@@ -18,6 +18,7 @@
 /* ── 4. Scrapbook Book Viewer & Shared Layout ──────────────────────────── */
 @import './styles/scrapbook/viewer.css';
 @import './styles/scrapbook/poetry-modal.css';
+@import './styles/scrapbook/music.css';
 
 /* ── 5. Individual Scrapbook Pages ─────────────────────────────────────── */
 @import './styles/scrapbook/page1.css';
