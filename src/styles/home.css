@@ -1,0 +1,431 @@
+/* ── Board — full viewport (background comes from body) ─── */
+.home-board {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/*
+  Ratio container: strictly locked to the reference aspect ratio 1024:682 (~1.5015:1).
+  Centered both horizontally and vertically inside the full-screen dark green paper background.
+  On widescreen displays (ratio > 1.5): height is 100vh, width is 150.15vh, centered horizontally.
+  On narrower displays (ratio < 1.5): width is 100vw, height is 66.6vw, centered vertically.
+  All scrapbook elements use exact percentage positions derived from the 1024x682 design,
+  ensuring a pixel-perfect, distortion-free match across all screen resolutions!
+*/
+.board-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(100vw, calc(100vh * (1024 / 682)));
+  height: min(100vh, calc(100vw * (682 / 1024)));
+  aspect-ratio: 1024 / 682;
+}
+
+/* All scrapbook elements: absolutely positioned within board-content */
+.el {
+  position: absolute;
+  transform-origin: center center;
+}
+
+.el img {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+.birthday-note {
+  left: 8.40%;
+  top: 7.33%;
+  width: 40.80%;
+  z-index: 10;
+  transform: rotate(-2deg);
+}
+
+.birthday-note img {
+  filter: drop-shadow(3px 5px 14px rgba(0, 0, 0, 0.45));
+}
+
+.main-polaroid {
+  left: 30.57%;
+  top: 31.09%;
+  width: 39.65%;
+  z-index: 10;
+  transform: rotate(-3.5deg);
+}
+
+.main-polaroid img {
+  filter: drop-shadow(4px 7px 18px rgba(0, 0, 0, 0.58));
+}
+
+.small-note {
+  left: 6.64%;
+  top: 48.97%;
+  width: 16.70%;
+  z-index: 9;
+}
+
+.small-note img {
+  filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.4));
+}
+
+.sunset-polaroid {
+  left: 70.12%;
+  top: 11.88%;
+  width: 12.53%;
+  z-index: 9;
+}
+
+.sunset-polaroid img {
+  filter: drop-shadow(3px 5px 14px rgba(0, 0, 0, 0.5));
+}
+
+.butterfly {
+  left: 81.25%;
+  top: 30.65%;
+  width: 13.67%;
+  z-index: 12;
+}
+
+.butterfly img {
+  filter: drop-shadow(2px 3px 8px rgba(0, 0, 0, 0.35));
+  animation: flutter 3s ease-in-out infinite;
+}
+
+.grateful-text {
+  left: 73.44%;
+  top: 50.15%;
+  width: 18.07%;
+  z-index: 9;
+}
+
+.flower {
+  left: 5.66%;
+  top: 78.01%;
+  width: 9.28%;
+  z-index: 11;
+}
+
+.flower img {
+  filter: drop-shadow(1px 2px 6px rgba(0, 0, 0, 0.35));
+}
+
+.yellow-heart {
+  left: 21.78%;
+  top: 76.10%;
+  width: 5.08%;
+  z-index: 11;
+}
+
+.yellow-heart img {
+  animation: heartbeat 2.6s ease-in-out infinite;
+}
+
+.blue-star {
+  left: 75.88%;
+  top: 79.03%;
+  width: 6.35%;
+  z-index: 11;
+}
+
+.blue-star img {
+  filter: drop-shadow(1px 2px 6px rgba(0, 0, 0, 0.35));
+}
+
+.smiley {
+  left: 86.91%;
+  top: 71.55%;
+  width: 9.96%;
+  z-index: 11;
+}
+
+.smiley img {
+  filter: drop-shadow(1px 3px 8px rgba(0, 0, 0, 0.35));
+}
+
+/* ── Interactive Polaroid — Bass Speaker Pulse ───────────── */
+.interactive-polaroid {
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-decoration: none;
+  display: block;
+}
+
+/* Pulse lives on the img so it doesn't fight the parent rotate() */
+.interactive-polaroid img {
+  animation: bassPulse 2s ease-in-out infinite;
+  transition: filter 0.3s ease;
+}
+
+.interactive-polaroid:hover {
+  transform: rotate(-2deg) scale(1.03) !important;
+}
+
+/* On hover: stop idle pulse, light the glow up fully */
+.interactive-polaroid:hover img {
+  animation: none !important;
+  filter:
+    drop-shadow(0px 0px 16px rgba(255, 220, 80, 0.75)) drop-shadow(4px 10px 22px rgba(0, 0, 0, 0.65)) !important;
+}
+
+/* ── Eye-Catching Lead — Text + Arrow, inside polaroid space ─ */
+.click-lead {
+  position: absolute;
+  z-index: 26;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  /* Sits in the bottom-left area of the main polaroid */
+  left: 30%;
+  top: 72%;
+  user-select: none;
+  animation:
+    leadDropIn 0.9s 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  transition: transform 0.2s ease;
+}
+
+.click-lead:hover {
+  transform: scale(1.06) !important;
+}
+
+.click-lead:active {
+  transform: scale(0.95) !important;
+}
+
+.lead-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.lead-text {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(32px, 3.8vw, 52px);
+  font-weight: 700;
+  color: #fffde7;
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  display: block;
+  animation: leadGlowPulse 3s 1.3s ease-in-out infinite;
+  text-shadow:
+    0 0 6px rgba(255, 255, 255, 0.9),
+    0 0 14px rgba(251, 191, 36, 1),
+    0 0 28px rgba(251, 191, 36, 0.65),
+    0 2px 6px rgba(0, 0, 0, 0.85);
+}
+
+/* Arrow SVG pointing up-right toward the image center */
+.lead-arrow {
+  position: absolute;
+  top: -42px;
+  right: -14px;
+  width: 58px;
+  height: 50px;
+  pointer-events: none;
+  opacity: 1;
+  transform: scaleX(-1);
+  filter:
+    drop-shadow(0px 0px 4px rgba(255, 240, 100, 0.9)) drop-shadow(1px 2px 4px rgba(0, 0, 0, 0.7));
+}
+
+/* ── Portrait / Vertical / Square Screens (matching vertical reference 819:1024) ─── */
+@media (max-aspect-ratio: 1.15/1) {
+  .board-content {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
+    aspect-ratio: auto;
+  }
+
+  .birthday-note {
+    left: 6.72%;
+    top: 8.79%;
+    width: 64.10%;
+    z-index: 10;
+    transform: rotate(-2deg);
+  }
+
+  .main-polaroid {
+    left: 25.64%;
+    top: 35.16%;
+    width: 52.50%;
+    z-index: 8;
+    transform: rotate(-3.5deg);
+  }
+
+  .small-note {
+    left: 1.83%;
+    top: 42.97%;
+    width: 27.47%;
+    z-index: 9;
+  }
+
+  .sunset-polaroid {
+    left: 72.04%;
+    top: 11.23%;
+    width: 23.20%;
+    z-index: 9;
+  }
+
+  .butterfly {
+    left: 77.53%;
+    top: 30.27%;
+    width: 19.54%;
+    z-index: 12;
+  }
+
+  .grateful-text {
+    left: 76.92%;
+    top: 48.83%;
+    width: 22.59%;
+    z-index: 11;
+  }
+
+  .yellow-heart {
+    left: 15.87%;
+    top: 65.43%;
+    width: 7.33%;
+    z-index: 11;
+  }
+
+  .flower {
+    left: 5.49%;
+    top: 75.68%;
+    width: 17.70%;
+    z-index: 11;
+  }
+
+  .blue-star {
+    left: 61.05%;
+    top: 80.57%;
+    width: 12.21%;
+    z-index: 11;
+  }
+
+  .smiley {
+    left: 78.14%;
+    top: 76.17%;
+    width: 17.70%;
+    z-index: 11;
+  }
+
+  .click-lead {
+    /* Sits below the main polaroid on vertical screens */
+    left: 26%;
+    top: 66%;
+  }
+
+  .lead-text {
+    font-size: clamp(28px, 5.5vw, 44px);
+  }
+
+  .lead-arrow {
+    top: -30px;
+    right: -8px;
+    width: 38px;
+    height: 34px;
+  }
+}
+
+/* ── Home Page Animations & Keyframes ────────────────────── */
+@keyframes flutter {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  30% {
+    transform: translateY(-6px) rotate(3deg);
+  }
+
+  70% {
+    transform: translateY(-2px) rotate(-2deg);
+  }
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scale(1.14);
+  }
+
+  60% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes leadDropIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(-20px);
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale(1.1) translateY(3px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes leadGlowPulse {
+  0%,
+  100% {
+    text-shadow:
+      0 0 6px rgba(255, 255, 255, 0.9),
+      0 0 14px rgba(251, 191, 36, 1),
+      0 0 28px rgba(251, 191, 36, 0.65),
+      0 2px 6px rgba(0, 0, 0, 0.85);
+    transform: scale(1);
+  }
+
+  50% {
+    text-shadow:
+      0 0 10px rgba(255, 255, 255, 1),
+      0 0 22px rgba(255, 220, 60, 1),
+      0 0 44px rgba(255, 220, 60, 0.7),
+      0 2px 6px rgba(0, 0, 0, 0.85);
+    transform: scale(1.04);
+  }
+}
+
+@keyframes bassPulse {
+  /* Filter-only — applied to img so parent rotate() is preserved */
+  0%,
+  100% {
+    filter:
+      drop-shadow(0px 0px 0px rgba(255, 220, 80, 0)) drop-shadow(4px 8px 16px rgba(0, 0, 0, 0.55));
+  }
+
+  30% {
+    filter:
+      drop-shadow(0px 0px 10px rgba(255, 220, 80, 0.55)) drop-shadow(4px 8px 18px rgba(0, 0, 0, 0.58));
+  }
+
+  50% {
+    filter:
+      drop-shadow(0px 0px 2px rgba(255, 220, 80, 0.1)) drop-shadow(4px 8px 16px rgba(0, 0, 0, 0.55));
+  }
+
+  80% {
+    filter:
+      drop-shadow(0px 0px 14px rgba(255, 220, 80, 0.6)) drop-shadow(4px 8px 20px rgba(0, 0, 0, 0.6));
+  }
+}

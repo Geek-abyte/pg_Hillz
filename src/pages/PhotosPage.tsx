@@ -1,4 +1,3 @@
-import React from "react";
 import mainPolaroid from "../assets/main_page_assets/12_main_polaroid.png";
 import sunsetPolaroid from "../assets/main_page_assets/03_sunset_polaroid.png";
 import flower from "../assets/main_page_assets/06_flower.png";

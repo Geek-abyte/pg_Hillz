@@ -1,0 +1,259 @@
+/* ── PAGE 2 ──────────────────────────────────────────────── */
+
+/* Page 2 has its own lavender background, no green texture */
+.sb-page--two {
+  background-color: #c9b4e0;
+  background-image: none;
+}
+
+/* Full-page bg texture (lavender canvas) */
+.sb-p2__bg {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* Bottom yellow torn-paper sheet — covers lower ~48% of page */
+.sb-p2__bottom-sheet {
+  top: 59%;
+  left: -1%;
+  width: 102%;
+  height: auto;
+  z-index: 2;
+  transform: none;
+}
+
+/* ── Tapes ── */
+
+/* Top-left gingham tape (FULL corner piece): large diagonal corner */
+.sb-p2__tape-tl {
+  top: -2%;
+  left: -2%;
+  width: 35%;
+  height: auto;
+  z-index: 9;
+  transform: none;
+}
+
+/* Bottom-left gingham tape: sits at the bottom-left corner */
+.sb-p2__tape-bl {
+  top: 84%;
+  left: -1%;
+  width: 17%;
+  height: auto;
+  z-index: 9;
+  transform: none;
+}
+
+/* Right gingham tape: mid-right edge */
+.sb-p2__tape-r {
+  top: 40%;
+  left: 82%;
+  width: 18%;
+  height: auto;
+  z-index: 14;
+  transform: none;
+}
+
+/* Green washi tape: anchors bottom note to the page */
+.sb-p2__tape-green {
+  top: 64%;
+  left: 2%;
+  width: 17%;
+  height: auto;
+  z-index: 17;
+  transform: none;
+}
+
+/* Purple washi tape: across top of polaroid frame */
+.sb-p2__tape-purple {
+  top: 18%;
+  left: 31%;
+  width: 19%;
+  height: auto;
+  z-index: 17;
+  transform: none;
+}
+
+/* ── Top yellow "the little moments" note ── */
+.sb-p2__top-note {
+  top: 5%;
+  left: 1%;
+  width: 46%;
+  height: auto;
+  z-index: 15;
+  transform: rotate(-2deg);
+}
+
+/* ── Polaroid photo & video ── */
+.sb-p2__polaroid-wrap {
+  top: 17%;
+  left: 12%;
+  width: 73%;
+  aspect-ratio: 1 / 1;
+  z-index: 11;
+  transform: rotate(-1.5deg);
+}
+
+/* Video playing behind the polaroid cutout window */
+.sb-p2__video {
+  position: absolute;
+  top: 6.5%;
+  left: 13%;
+  width: 77%;
+  height: 77%;
+  object-fit: cover;
+  transform: rotate(-6.7deg);
+  transform-origin: center center;
+  z-index: 1;
+  border-radius: 2px;
+}
+
+/* Polaroid frame sits on top with cutout window */
+.sb-p2__polaroid-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  transform: none;
+}
+
+/* ── Bottom lined note wrapper — note + label move as one ── */
+.sb-p2__bottom-note-wrap {
+  top: 64%;
+  left: 0%;
+  width: 48%;
+  z-index: 16;
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  pointer-events: auto;
+  transform-origin: center bottom;
+}
+
+.sb-p2__bottom-note-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── Stickers ── */
+
+/* Smiley — top-right corner */
+.sb-p2__smiley {
+  top: 1%;
+  left: 74%;
+  width: 20%;
+  height: auto;
+  z-index: 14;
+  transform: none;
+}
+
+/* Daisy — right side, mid-upper */
+.sb-p2__daisy {
+  top: 19%;
+  left: 79%;
+  width: 17%;
+  height: auto;
+  z-index: 14;
+  transform: none;
+}
+
+/* Purple flower — lower-right, sits above yellow sheet */
+.sb-p2__purple-flower {
+  top: 69%;
+  left: 85%;
+  width: 11%;
+  height: auto;
+  z-index: 14;
+  transform: none;
+}
+
+/* Pink crayon heart — left-center */
+.sb-p2__pink-heart {
+  top: 30%;
+  left: 0.5%;
+  width: 16%;
+  height: auto;
+  z-index: 14;
+  transform: none;
+}
+
+/* Yellow star — lower-left above bottom tape */
+.sb-p2__yellow-star {
+  top: 46%;
+  left: 2.5%;
+  width: 14%;
+  height: auto;
+  z-index: 14;
+  transform: none;
+}
+
+/* Strawberry — bottom-center on yellow sheet */
+.sb-p2__strawberry {
+  top: 85%;
+  left: 42%;
+  width: 15%;
+  height: auto;
+  z-index: 15;
+  transform: none;
+}
+
+/* ── Photo Dump / 01 label — lower-right on yellow sheet ── */
+.sb-p2__photo-dump {
+  top: 85%;
+  left: 59%;
+  width: 35%;
+  height: auto;
+  z-index: 15;
+  transform: none;
+}
+
+/* ── Doodles ── */
+
+/* Upper hearts doodle — top center */
+.sb-p2__hearts-top {
+  top: 3.5%;
+  left: 50%;
+  width: 12%;
+  height: auto;
+  z-index: 13;
+  transform: none;
+}
+
+/* Upper purple star — below and right of hearts */
+.sb-p2__star-top {
+  top: 13%;
+  left: 68%;
+  width: 7.5%;
+  height: auto;
+  z-index: 13;
+  transform: none;
+}
+
+/* Lower-left purple heart doodle — beside yellow star */
+.sb-p2__heart-doodle-l {
+  top: 58%;
+  left: 11%;
+  width: 5.5%;
+  height: auto;
+  z-index: 13;
+  transform: none;
+}
+
+/* Lower purple star doodle — right of strawberry */
+.sb-p2__star-low {
+  top: 81%;
+  left: 63%;
+  width: 6.5%;
+  height: auto;
+  z-index: 13;
+  transform: none;
+}

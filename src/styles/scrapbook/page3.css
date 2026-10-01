@@ -1,0 +1,197 @@
+/* ══════════════════════════════════════════════════════════
+   PAGE 3 — Black paper scrapbook spread
+   Reference: two polaroids stacked diagonally, bow at junction,
+   newspaper corners, Enjoy Life top-left, birthday text right,
+   stickers (rose, strawberry, bunny, hearts, flower).
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Full-bleed background ── */
+.sb-p3__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── Torn newspaper — top-left corner ── */
+.sb-p3__news-top {
+  top: -2%;
+  left: -2%;
+  width: 40%;
+  z-index: 2;
+  opacity: 0.9;
+}
+
+/* ── Torn newspaper — bottom-right corner ── */
+.sb-p3__news-bot {
+  bottom: -1%;
+  right: -1%;
+  width: 38%;
+  z-index: 2;
+  opacity: 0.9;
+}
+
+/* ── Blue/teal paint stroke — horizontal across left-center ── */
+.sb-p3__blue-paint {
+  top: 44%;
+  left: -6%;
+  width: 58%;
+  z-index: 3;
+  transform: rotate(-4deg);
+  opacity: 0.85;
+}
+
+/* ── "Enjoy Life" lettering — upper-left, over newspaper ── */
+.sb-p3__enjoy-life {
+  top: 6%;
+  left: 2%;
+  width: 30%;
+  z-index: 8;
+  transform: rotate(-3deg);
+}
+
+/* ── Heart doodles — left-center below Enjoy Life ── */
+.sb-p3__hearts {
+  top: 34%;
+  left: 3%;
+  width: 20%;
+  z-index: 8;
+}
+
+/* ── Pink flower doodle — top-right corner ── */
+.sb-p3__pink-flower {
+  top: 1%;
+  right: 6%;
+  width: 9%;
+  z-index: 8;
+}
+
+/* ── Strawberry sticker — mid-right ── */
+.sb-p3__strawberry {
+  top: 41%;
+  right: 1%;
+  width: 18%;
+  z-index: 10;
+  transform: rotate(4deg);
+}
+
+/* ── Upper polaroid wrapper — top-right, slight clockwise tilt ── */
+.sb-p3__upper-polaroid {
+  top: 0%;
+  left: 30%;
+  width: 52%;
+  z-index: 12;
+  transform: rotate(2deg);
+  position: absolute;
+}
+
+.sb-p3__upper-photo {
+  position: absolute;
+  top: 6%;
+  left: 5%;
+  width: 90%;
+  height: 83%;
+  object-fit: cover;
+  object-position: center top;
+  z-index: 1;
+}
+
+.sb-p3__upper-frame {
+  position: relative;
+  width: 100%;
+  height: auto;
+  z-index: 2;
+  display: block;
+}
+
+/* ── Gold bow — at the junction between both polaroids ── */
+.sb-p3__bow {
+  top: 52%;
+  left: 20%;
+  width: 26%;
+  z-index: 20;
+  transform: rotate(-5deg);
+}
+
+/* ── Lower polaroid wrapper — left-of-center, slight counter-clockwise tilt ── */
+.sb-p3__lower-polaroid {
+  top: 55%;
+  left: 2%;
+  width: 52%;
+  z-index: 12;
+  transform: rotate(-2deg);
+  position: absolute;
+}
+
+.sb-p3__lower-photo {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 85%;
+  object-fit: cover;
+  object-position: center top;
+  z-index: 1;
+}
+
+.sb-p3__lower-frame {
+  position: relative;
+  width: 100%;
+  height: auto;
+  z-index: 2;
+  display: block;
+}
+
+/* ── Rose sticker — bottom-left, large ── */
+.sb-p3__rose {
+  bottom: 2%;
+  left: 0%;
+  width: 20%;
+  z-index: 14;
+  transform: rotate(3deg);
+}
+
+/* ── "happy birthday BESTIE" lettering — center-right ── */
+.sb-p3__bday-text {
+  bottom: 20%;
+  right: 2%;
+  width: 50%;
+  z-index: 10;
+}
+
+/* ── Small line doodles — left side of lower polaroid ── */
+.sb-p3__lines-left {
+  top: 78%;
+  left: 1%;
+  width: 12%;
+  z-index: 9;
+  transform: rotate(-30deg);
+}
+
+/* ── Small star — below birthday text ── */
+.sb-p3__star-right {
+  bottom: 12%;
+  right: 8%;
+  width: 12%;
+  z-index: 9;
+}
+
+/* ── Small squiggle lines — above birthday text right ── */
+.sb-p3__lines-right {
+  bottom: 44%;
+  right: 5%;
+  width: 16%;
+  z-index: 9;
+}
+
+/* ── Bunny sticker — bottom-center-right, below birthday text ── */
+.sb-p3__bunny {
+  bottom: 3%;
+  right: 22%;
+  width: 14%;
+  z-index: 12;
+}
+

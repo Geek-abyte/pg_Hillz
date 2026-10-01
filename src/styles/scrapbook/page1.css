@@ -1,0 +1,74 @@
+/* ── PAGE 1  — Cover ─────────────────────────────────────── */
+.sb-cover__title {
+  top: 6%;
+  left: 3%;
+  width: 64%;
+  z-index: 12;
+  transform: rotate(-1.5deg);
+}
+
+.sb-cover__sunset {
+  top: 8%;
+  right: 3%;
+  width: 28%;
+  z-index: 11;
+  transform: rotate(2deg);
+}
+
+.sb-cover__butterfly {
+  top: 30%;
+  right: 4%;
+  width: 18%;
+  z-index: 13;
+}
+
+.sb-cover__main {
+  top: 33%;
+  left: 12%;
+  width: 68%;
+  z-index: 10;
+  transform: rotate(-2.5deg);
+}
+
+.sb-cover__note {
+  top: 44%;
+  left: 1%;
+  width: 28%;
+  z-index: 11;
+  transform: rotate(1deg);
+}
+
+.sb-cover__grateful {
+  top: 68%;
+  right: 3%;
+  width: 28%;
+  z-index: 11;
+}
+
+.sb-cover__flower {
+  bottom: 4%;
+  left: 5%;
+  width: 17%;
+  z-index: 11;
+}
+
+.sb-cover__star {
+  bottom: 5%;
+  left: 48%;
+  width: 12%;
+  z-index: 11;
+}
+
+.sb-cover__smiley {
+  bottom: 4%;
+  right: 8%;
+  width: 16%;
+  z-index: 11;
+}
+
+.sb-cover__heart {
+  top: 30%;
+  left: 5%;
+  width: 8%;
+  z-index: 13;
+}

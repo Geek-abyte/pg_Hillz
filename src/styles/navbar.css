@@ -1,0 +1,76 @@
+/* ── Navbar ─────────────────────────────────── */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(100vw, calc(100vh * (1024 / 682)));
+  height: clamp(42px, 6.5vh, 60px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 1.8vw, 24px);
+  padding: 0 3.2%;
+}
+
+.navbar .camera-icon {
+  width: clamp(26px, 2.8vw, 42px);
+  height: auto;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+.nav-links {
+  display: flex;
+  gap: clamp(14px, 1.8vw, 28px);
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-family: 'Caveat', cursive;
+  font-size: clamp(16px, 1.5vw, 22px);
+  color: var(--nav-text);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a.active {
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.nav-links a:hover {
+  color: var(--gold);
+}
+
+.nav-heart {
+  margin-left: auto;
+  width: clamp(18px, 1.8vw, 28px);
+  height: auto;
+}
+
+/* Portrait / Narrow Screens */
+@media (max-aspect-ratio: 1.15/1) {
+  .navbar {
+    width: 100%;
+    height: clamp(40px, 5.5vh, 54px);
+    padding: 0 4%;
+  }
+
+  .navbar .camera-icon {
+    width: clamp(22px, 4vw, 34px);
+  }
+
+  .nav-links {
+    gap: clamp(10px, 2.5vw, 20px);
+  }
+
+  .nav-links a {
+    font-size: clamp(14px, 2.6vw, 19px);
+  }
+
+  .nav-heart {
+    width: clamp(16px, 3vw, 24px);
+  }
+}

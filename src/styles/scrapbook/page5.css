@@ -1,0 +1,193 @@
+/* ══════════════════════════════════════════════════════════
+   PAGE 5 — Warm Kraft / Scrapbook Spread
+   Reference:
+   - Warm kraft paper background (00_background_reconstructed.jpeg)
+   - Top-left: Torn kraft paper note "Good Friends Better days ♡" with top tape
+   - Top-center-right: Polaroid camera sticker with flash doodle
+   - Left edge: Sunflower sticker (overlapping Good Friends note & main polaroid)
+   - Left middle: Dried white baby's breath flower bundle with masking tape
+   - Left side: Hand-drawn heart doodle
+   - Center-left: Main polaroid frame with 3 friends laughing (slightly tilted CW ~1-2deg)
+   - Top-right: 3-photo vertical strip with torn tape at the top
+   - Right side: Heart doodle
+   - Bottom-right: Torn lined grid note "Same chaos, different day ☺" with green gingham tape + heart doodle
+   - Bottom-center: Pink butterfly sticker
+   - Lower-left: Accent doodle lines
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Full-bleed background ── */
+.sb-p5__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── Top-left: "Good Friends Better days ♡" paper note ── */
+.sb-p5__good-friends-note {
+  position: absolute;
+  top: 3.5%;
+  left: 3%;
+  width: 42%;
+  z-index: 3;
+  transform: rotate(-1.5deg);
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.28));
+  pointer-events: none;
+}
+
+/* ── Tape on top of Good Friends note ── */
+.sb-p5__top-tape {
+  position: absolute;
+  top: 1.5%;
+  left: 11%;
+  width: 17%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* ── Camera sticker top-center ── */
+.sb-p5__camera-sticker {
+  position: absolute;
+  top: 4%;
+  left: 50%;
+  width: 19%;
+  z-index: 4;
+  transform: rotate(2deg);
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.25));
+  pointer-events: none;
+}
+
+/* ── Sunflower sticker upper-left ── */
+.sb-p5__sunflower {
+  position: absolute;
+  top: 27%;
+  left: 1.5%;
+  width: 16%;
+  z-index: 8;
+  transform: rotate(-5deg);
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.22));
+  pointer-events: none;
+}
+
+/* ── Heart doodle left side ── */
+.sb-p5__left-heart {
+  position: absolute;
+  top: 47%;
+  left: 11%;
+  width: 4.8%;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* ── Dried baby's breath flower bundle with tape ── */
+.sb-p5__flower-bundle {
+  position: absolute;
+  bottom: 14%;
+  left: 1%;
+  width: 21%;
+  z-index: 9;
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.2));
+  pointer-events: none;
+}
+
+/* ── Accent lines doodle bottom-left ── */
+.sb-p5__accent-lines {
+  position: absolute;
+  bottom: 9%;
+  left: 21%;
+  width: 6.5%;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* ── Main center polaroid ── */
+.sb-p5__main-polaroid {
+  position: absolute;
+  top: 24%;
+  left: 18%;
+  width: 59%;
+  z-index: 6;
+  transform: rotate(2.5deg);
+}
+
+.sb-p5__main-polaroid-frame {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 8px 22px rgba(0, 0, 0, 0.38));
+}
+
+/* ── Right 3-photo strip ── */
+.sb-p5__photo-strip {
+  position: absolute;
+  top: 12.5%;
+  right: 7%;
+  width: 28%;
+  z-index: 4;
+  transform: rotate(3deg);
+}
+
+.sb-p5__photo-strip-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 5px 14px rgba(0, 0, 0, 0.3));
+}
+
+/* ── Tape at top of photo strip ── */
+.sb-p5__strip-tape {
+  position: absolute;
+  top: 11.5%;
+  right: 17%;
+  width: 13%;
+  z-index: 6;
+  pointer-events: none;
+}
+
+/* ── Heart doodle on right ── */
+.sb-p5__right-heart {
+  position: absolute;
+  top: 64%;
+  right: 12%;
+  width: 5.5%;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* ── Small note bottom-right: "Same chaos, different day ☺" ── */
+.sb-p5__small-note {
+  position: absolute;
+  bottom: 8%;
+  right: 1%;
+  width: 31%;
+  z-index: 7;
+  transform: rotate(-1.5deg);
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.26));
+  pointer-events: none;
+}
+
+/* ── Green gingham tape bottom-right under note ── */
+.sb-p5__green-tape {
+  position: absolute;
+  bottom: 2%;
+  right: 8%;
+  width: 32%;
+  z-index: 8;
+  transform: rotate(-3deg);
+  pointer-events: none;
+}
+
+/* ── Butterfly sticker bottom-center ── */
+.sb-p5__butterfly {
+  position: absolute;
+  bottom: 5%;
+  left: 33%;
+  width: 15%;
+  z-index: 8;
+  transform: rotate(-8deg);
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.24));
+  pointer-events: none;
+}

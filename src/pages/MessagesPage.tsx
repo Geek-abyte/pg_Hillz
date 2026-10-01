@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, type FormEvent } from "react";
 
 interface Message {
   id: number;
@@ -12,7 +12,7 @@ export default function MessagesPage() {
   const [author, setAuthor] = useState("");
   const [content, setContent] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (!author.trim() || !content.trim()) return;
     setMessages((prev) => [

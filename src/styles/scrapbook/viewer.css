@@ -1,0 +1,668 @@
+/* ═══════════════════════════════════════════════════════════
+   SCRAPBOOK VIEWER  —  /scrapbook (/photos /about)
+   4 : 5 canvas, identical on every device
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Viewer shell ─────────────────────────────────────────── */
+.sb-viewer {
+  position: fixed;
+  /* Cover the FULL viewport including the navbar area */
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* Dark + blur overlay on top of the global body background */
+  background-color: rgba(10, 22, 13, 0.72);
+  overflow: hidden;
+  padding: calc(var(--navbar-h, 54px) + 16px) 0 80px;
+}
+
+/* ── 4:5 book canvas ─────────────────────────────────────── */
+.sb-book {
+  position: relative;
+  /* 4:5 ratio: height = 125% of width */
+  width: min(90vw, calc((100vh - var(--navbar-h, 54px) - 96px) * 0.8));
+  aspect-ratio: 4 / 5;
+  perspective: 2200px;
+  perspective-origin: center center;
+  border-radius: 8px;
+  box-shadow:
+    0 26px 70px rgba(0, 0, 0, 0.7),
+    0 8px 24px rgba(0, 0, 0, 0.55),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+/* Subtle book spine shadow on the left edge */
+.sb-book::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 28px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0.12) 65%, transparent 100%);
+  pointer-events: none;
+  z-index: 40;
+}
+
+/* ── Sheets & Layers ─────────────────────────────────────── */
+.sb-sheet {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+.sb-sheet--static {
+  transform: none;
+}
+
+/* ── Turning Sheet (Top layer, flexible curling physics) ── */
+.sb-sheet--turning-forward {
+  transform-origin: left center;
+  animation: sbFlipForward 0.68s cubic-bezier(0.25, 1, 0.36, 1) both;
+  pointer-events: none;
+}
+
+.sb-sheet--turning-back {
+  transform-origin: left center;
+  animation: sbFlipBack 0.68s cubic-bezier(0.22, 1, 0.36, 1) both;
+  pointer-events: none;
+}
+
+/* Inner wrapper for 3D paper depth */
+.sb-sheet__inner {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+/* Dynamic paper sheen & crease gradient on turning page */
+.sb-paper-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 35;
+  border-radius: 8px;
+  opacity: 0;
+}
+
+.sb-sheet--turning-forward .sb-paper-sheen {
+  animation: sbSheenForward 0.68s cubic-bezier(0.25, 1, 0.36, 1) both;
+}
+
+.sb-sheet--turning-back .sb-paper-sheen {
+  animation: sbSheenBack 0.68s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── Underlying Sheet (Base layer reveal) ─────────────────── */
+.sb-sheet--under-forward {
+  animation: sbUnderRevealForward 0.68s cubic-bezier(0.25, 1, 0.36, 1) both;
+}
+
+.sb-sheet--under-back {
+  animation: sbUnderRevealBack 0.68s cubic-bezier(0.25, 1, 0.36, 1) both;
+}
+
+/* Shadow cast on the page underneath */
+.sb-shadow-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 30;
+}
+
+.sb-shadow-overlay--forward {
+  animation: sbShadowLift 0.68s cubic-bezier(0.25, 1, 0.36, 1) both;
+}
+
+.sb-shadow-overlay--back {
+  animation: sbShadowFall 0.68s cubic-bezier(0.25, 1, 0.36, 1) both;
+}
+
+/* ── Realistic Flexible Paper Keyframes ──────────────────── */
+
+/* Forward Page Turn: Lifting from right, bending across spine */
+@keyframes sbFlipForward {
+  0% {
+    transform: rotateY(0deg) skewY(0deg) rotateZ(0deg) scale(1);
+    opacity: 1;
+    filter: drop-shadow(-2px 0 6px rgba(0, 0, 0, 0.3));
+  }
+
+  24% {
+    /* Corner lifts and flexes, paper starts bending */
+    transform: rotateY(-26deg) skewY(-3.2deg) rotateZ(-1.6deg) scale(0.985);
+    opacity: 1;
+    filter: drop-shadow(-8px 4px 18px rgba(0, 0, 0, 0.5));
+  }
+
+  52% {
+    /* Halfway: paper deep curl */
+    transform: rotateY(-72deg) skewY(-4.5deg) rotateZ(-2.2deg) scale(0.965);
+    opacity: 0.98;
+    filter: drop-shadow(-16px 8px 30px rgba(0, 0, 0, 0.6));
+  }
+
+  78% {
+    /* Sweeping across towards left */
+    transform: rotateY(-118deg) skewY(-2.5deg) rotateZ(-1.2deg) scale(0.94);
+    opacity: 0.6;
+    filter: drop-shadow(-22px 10px 36px rgba(0, 0, 0, 0.4));
+  }
+
+  100% {
+    /* Folds away smoothly onto left side */
+    transform: rotateY(-155deg) skewY(-0.5deg) rotateZ(-0.2deg) scale(0.92);
+    opacity: 0;
+    filter: none;
+  }
+}
+
+/* Backward Page Turn: Sweeping in from left, floating and settling flat */
+@keyframes sbFlipBack {
+  0% {
+    transform: rotateY(-145deg) skewY(3deg) rotateZ(1.5deg) scale(0.92);
+    opacity: 0;
+    filter: drop-shadow(-20px 8px 34px rgba(0, 0, 0, 0.4));
+  }
+
+  25% {
+    transform: rotateY(-105deg) skewY(4.2deg) rotateZ(2deg) scale(0.95);
+    opacity: 0.85;
+    filter: drop-shadow(-16px 6px 28px rgba(0, 0, 0, 0.55));
+  }
+
+  58% {
+    transform: rotateY(-42deg) skewY(2.8deg) rotateZ(1.2deg) scale(0.98);
+    opacity: 1;
+    filter: drop-shadow(-10px 4px 20px rgba(0, 0, 0, 0.5));
+  }
+
+  86% {
+    /* Micro-flex overshoot as flexible paper hits surface */
+    transform: rotateY(2.2deg) skewY(-0.4deg) rotateZ(-0.2deg) scale(1.006);
+    opacity: 1;
+    filter: drop-shadow(-3px 2px 8px rgba(0, 0, 0, 0.35));
+  }
+
+  100% {
+    transform: rotateY(0deg) skewY(0deg) rotateZ(0deg) scale(1);
+    opacity: 1;
+    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+  }
+}
+
+/* Under page reveal when going forward */
+@keyframes sbUnderRevealForward {
+  0% {
+    transform: scale(0.965);
+    filter: brightness(0.85);
+  }
+
+  60% {
+    transform: scale(0.99);
+    filter: brightness(0.96);
+  }
+
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+/* Under page when going backward (previous page landing on it) */
+@keyframes sbUnderRevealBack {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+
+  100% {
+    transform: scale(0.98);
+    filter: brightness(0.9);
+  }
+}
+
+/* Dynamic paper sheen that glides across the turning page */
+@keyframes sbSheenForward {
+  0% {
+    opacity: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0) 100%);
+  }
+
+  35% {
+    opacity: 0.55;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.45) 0%, rgba(255, 255, 255, 0.22) 40%, rgba(0, 0, 0, 0.35) 80%, transparent 100%);
+  }
+
+  70% {
+    opacity: 0.4;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(255, 255, 255, 0.15) 30%, transparent 80%);
+  }
+
+  100% {
+    opacity: 0;
+    background: none;
+  }
+}
+
+@keyframes sbSheenBack {
+  0% {
+    opacity: 0.45;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(255, 255, 255, 0.18) 35%, transparent 85%);
+  }
+
+  45% {
+    opacity: 0.5;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.45) 0%, rgba(255, 255, 255, 0.22) 45%, rgba(0, 0, 0, 0.3) 80%, transparent 100%);
+  }
+
+  85% {
+    opacity: 0.15;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0%, rgba(255, 255, 255, 0.08) 60%, transparent 100%);
+  }
+
+  100% {
+    opacity: 0;
+    background: none;
+  }
+}
+
+/* Shadow falling on the page below as top page lifts */
+@keyframes sbShadowLift {
+  0% {
+    opacity: 0.65;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.28) 45%, transparent 85%);
+  }
+
+  45% {
+    opacity: 0.4;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.15) 50%, transparent 90%);
+  }
+
+  100% {
+    opacity: 0;
+    background: transparent;
+  }
+}
+
+@keyframes sbShadowFall {
+  0% {
+    opacity: 0;
+    background: transparent;
+  }
+
+  50% {
+    opacity: 0.35;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.15) 50%, transparent 90%);
+  }
+
+  100% {
+    opacity: 0.6;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.28) 45%, transparent 85%);
+  }
+}
+
+/* ── Shared page container ───────────────────────────────── */
+.sb-page {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background-color: #2d4a35;
+  background-image: url('/src/assets/bg_1.jpeg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: repeat;
+}
+
+/* ── Shared helpers ──────────────────────────────────────── */
+.sb-el {
+  position: absolute;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Washi tape strips */
+.sb-tape {
+  position: absolute;
+  height: 18px;
+  width: 70px;
+  background: rgba(210, 190, 130, 0.55);
+  border-left: 2px dashed rgba(180, 140, 60, 0.35);
+  border-right: 2px dashed rgba(180, 140, 60, 0.35);
+  z-index: 20;
+}
+
+.sb-tape--top-left {
+  top: 0;
+  left: 12%;
+  transform: rotate(-2deg);
+}
+
+.sb-tape--top-center {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) rotate(1deg);
+}
+
+.sb-tape--top-right {
+  top: 0;
+  right: 10%;
+  transform: rotate(2deg);
+}
+
+/* Sticky note */
+.sb-sticky {
+  position: absolute;
+  background: linear-gradient(135deg, #fffdf4, #fef3c7 60%, #fde68a);
+  border: 1.5px dashed rgba(180, 83, 9, 0.35);
+  border-radius: 4px 8px 6px 4px;
+  padding: 10px 12px;
+  font-family: 'Caveat', cursive;
+  font-size: clamp(11px, 1.8%, 15px);
+  color: #3b2007;
+  line-height: 1.4;
+  box-shadow: 3px 5px 14px rgba(0, 0, 0, 0.45);
+  z-index: 15;
+}
+
+.sb-sticky--wide {
+  min-width: 38%;
+}
+
+/* Heading */
+.sb-heading {
+  position: absolute;
+  font-family: 'Caveat', cursive;
+  font-size: clamp(16px, 3.5%, 26px);
+  font-weight: 700;
+  color: #fef08a;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+  z-index: 10;
+  top: 6%;
+  left: 5%;
+}
+
+.sb-heading--right {
+  left: auto;
+  right: 5%;
+  text-align: right;
+}
+
+/* Doodle text */
+.sb-doodle {
+  position: absolute;
+  font-family: 'Caveat', cursive;
+  font-size: clamp(13px, 2.5%, 20px);
+  z-index: 10;
+}
+
+.sb-doodle--stars {
+  color: #fbbf24;
+  bottom: 6%;
+  left: 5%;
+}
+
+.sb-doodle--hearts {
+  color: #f87171;
+  bottom: 6%;
+  right: 5%;
+}
+
+/* Quote card */
+.sb-quote-card {
+  position: absolute;
+  top: 18%;
+  left: 8%;
+  right: 8%;
+  background: rgba(255, 253, 240, 0.08);
+  border: 1.5px solid rgba(255, 240, 160, 0.25);
+  border-radius: 10px;
+  padding: 5% 6%;
+  backdrop-filter: blur(4px);
+  z-index: 12;
+}
+
+.sb-quote-text {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(14px, 3%, 22px);
+  color: #fef9ec;
+  line-height: 1.65;
+  text-align: center;
+}
+
+.sb-quote-sig {
+  display: block;
+  font-family: 'Caveat', cursive;
+  font-size: clamp(12px, 2.2%, 17px);
+  color: #fbbf24;
+  text-align: right;
+  margin-top: 8%;
+}
+
+/* Postcard wrapper */
+.sb-postcard {
+  position: absolute;
+  top: 28%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4%;
+  z-index: 12;
+}
+
+.sb-postcard .sb-el {
+  position: relative;
+  width: 100%;
+}
+
+.sb-postcard__caption {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(11px, 2%, 16px);
+  color: #fef3c7;
+  text-align: center;
+}
+
+/* 2×2 mini polaroid grid */
+.sb-grid-2 {
+  position: absolute;
+  top: 18%;
+  left: 5%;
+  right: 5%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4%;
+  z-index: 12;
+}
+
+.sb-mini-polaroid {
+  background: #fff;
+  padding: 4% 4% 10% 4%;
+  box-shadow: 4px 6px 16px rgba(0, 0, 0, 0.55);
+  transform: rotate(-2deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sb-mini-polaroid--tilted {
+  transform: rotate(2.5deg);
+}
+
+.sb-mini-polaroid--tilt-r {
+  transform: rotate(-1.5deg);
+}
+
+.sb-mini-polaroid img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+}
+
+.sb-mini-polaroid span {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(9px, 1.8%, 13px);
+  color: #2d4a35;
+  margin-top: 4%;
+  font-weight: 600;
+}
+
+/* Closing block */
+.sb-closing {
+  position: absolute;
+  top: 18%;
+  left: 6%;
+  right: 6%;
+  z-index: 14;
+}
+
+.sb-closing__text {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(15px, 3.2%, 24px);
+  color: #fef9ec;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.sb-closing__text strong {
+  color: #fbbf24;
+  font-size: 1.15em;
+}
+
+.sb-closing__fin {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Caveat', cursive;
+  font-size: clamp(12px, 2.5%, 18px);
+  color: #fbbf24;
+  letter-spacing: 0.15em;
+  z-index: 14;
+}
+
+/* ── Navigation arrows ───────────────────────────────────── */
+.sb-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  z-index: 50;
+  padding: 0;
+}
+
+.sb-nav svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+}
+
+.sb-nav--prev {
+  left: clamp(8px, 3vw, 40px);
+}
+
+.sb-nav--next {
+  right: clamp(8px, 3vw, 40px);
+}
+
+.sb-nav:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.sb-nav:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+/* On narrow screens move arrows to bottom corners */
+@media (max-width: 600px) {
+  .sb-nav {
+    top: auto;
+    transform: none;
+    bottom: 36px;
+    width: 42px;
+    height: 42px;
+  }
+
+  .sb-nav--prev {
+    left: 16px;
+  }
+
+  .sb-nav--next {
+    right: 16px;
+  }
+
+  .sb-nav:hover:not(:disabled) {
+    transform: scale(1.08);
+  }
+}
+
+/* ── Page counter ────────────────────────────────────────── */
+.sb-counter {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  z-index: 50;
+}
+
+.sb-counter__track {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.sb-counter__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.25s, transform 0.25s;
+}
+
+.sb-counter__dot--active {
+  background: #fbbf24;
+  transform: scale(1.35);
+}
+
+.sb-counter__dot:hover:not(.sb-counter__dot--active) {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.sb-counter__label {
+  font-family: 'Caveat', cursive;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.08em;
+}

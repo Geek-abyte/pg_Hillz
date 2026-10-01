@@ -1,0 +1,304 @@
+/* ═══════════════════════════════════════════════════════════
+   POETRY MODAL & ACTIVE NOTE STYLING
+   Elegant full-screen literary modal with parchment aesthetic
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Fullscreen Backdrop ─────────────────────────────────── */
+.poetry-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(8, 16, 11, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  animation: poetryFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Subtle ambient golden candlelight glow in the center */
+.poetry-ambient-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(90vw, 700px);
+  height: min(90vh, 700px);
+  background: radial-gradient(circle, rgba(212, 168, 67, 0.18) 0%, rgba(212, 168, 67, 0.05) 50%, transparent 75%);
+  pointer-events: none;
+  filter: blur(40px);
+  animation: poetryGlowPulse 4s ease-in-out infinite alternate;
+}
+
+/* ── Poetry Card Container ───────────────────────────────── */
+.poetry-card {
+  position: relative;
+  width: 100%;
+  max-width: 660px;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: linear-gradient(170deg, rgba(26, 46, 30, 0.96) 0%, rgba(18, 33, 22, 0.98) 100%);
+  border: 1px solid rgba(212, 168, 67, 0.35);
+  border-radius: 20px;
+  padding: clamp(40px, 6vw, 54px) clamp(24px, 5vw, 44px) clamp(32px, 5vw, 44px);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.75),
+    0 0 30px rgba(212, 168, 67, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  animation: poetryCardFloatIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  color: #fffdf5;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(212, 168, 67, 0.4) transparent;
+}
+
+.poetry-card::-webkit-scrollbar {
+  width: 6px;
+}
+.poetry-card::-webkit-scrollbar-thumb {
+  background: rgba(212, 168, 67, 0.35);
+  border-radius: 6px;
+}
+.poetry-card::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ── Close Button ────────────────────────────────────────── */
+.poetry-close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 168, 67, 0.3);
+  background: rgba(255, 255, 255, 0.06);
+  color: #e8d5a3;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  z-index: 10;
+}
+
+.poetry-close-btn:hover {
+  background: rgba(212, 168, 67, 0.25);
+  border-color: #d4a843;
+  color: #fff;
+  transform: scale(1.1) rotate(90deg);
+}
+
+/* ── Header Ornaments ────────────────────────────────────── */
+.poetry-header-ornament {
+  text-align: center;
+  color: #d4a843;
+  font-size: 22px;
+  opacity: 0.85;
+  margin-bottom: 8px;
+}
+
+.poetry-title {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(28px, 4.5vw, 42px);
+  font-weight: 700;
+  color: #fff4d1;
+  text-align: center;
+  line-height: 1.25;
+  margin: 0 0 6px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.02em;
+}
+
+.poetry-author {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(19px, 2.5vw, 25px);
+  font-weight: 600;
+  color: #d4a843;
+  text-align: center;
+  margin-bottom: 20px;
+  letter-spacing: 0.04em;
+}
+
+.poetry-author span {
+  font-size: 0.85em;
+  color: rgba(232, 213, 163, 0.65);
+  font-style: italic;
+  font-weight: 400;
+  margin-right: 6px;
+}
+
+/* Elegant gold gradient divider */
+.poetry-divider {
+  width: 60%;
+  height: 1px;
+  margin: 0 auto 24px;
+  background: linear-gradient(90deg, transparent, #d4a843, transparent);
+  opacity: 0.7;
+}
+
+/* ── Body & Paragraphs ───────────────────────────────────── */
+.poetry-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 4px;
+}
+
+.poetry-paragraph {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(18px, 2.4vw, 23px);
+  line-height: 1.65;
+  color: #f6ebd0;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  white-space: pre-line;
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+.poetry-footer {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.poetry-seal {
+  display: inline-block;
+  font-family: 'Caveat', cursive;
+  font-size: clamp(16px, 2vw, 20px);
+  color: #d4a843;
+  opacity: 0.9;
+  letter-spacing: 0.06em;
+  border-top: 1px dashed rgba(212, 168, 67, 0.35);
+  padding-top: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* ── Active Note Animations on the Scrapbook Page ────────── */
+/* The note image jiggles AND glows — filter animates in noteGlow, transform in noteJiggle */
+.sb-active-note {
+  cursor: pointer;
+  outline: none;
+  transform-origin: center bottom;
+  animation:
+    activeNoteJiggle 4s ease-in-out infinite,
+    activeNoteGlow   2.5s ease-in-out infinite;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.25s ease;
+}
+
+.sb-active-note:hover {
+  animation-play-state: paused;
+  transform: scale(1.05) rotate(-2deg) !important;
+  filter:
+    drop-shadow(0 0 22px rgba(251, 191, 36, 1))
+    drop-shadow(0 0 40px rgba(251, 191, 36, 0.55))
+    drop-shadow(3px 10px 18px rgba(0, 0, 0, 0.7)) !important;
+}
+
+/* Click Indicator — inline label inside the note wrapper */
+.sb-note-lead {
+  user-select: none;
+}
+
+.sb-note-lead__text {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(14px, 1.8vw, 19px);
+  font-weight: 800;
+  color: #b8620a;
+  white-space: nowrap;
+  letter-spacing: 0.06em;
+  padding: 0 8px;
+  display: block;
+  animation: noteTextPulse 1.8s ease-in-out infinite;
+  text-shadow:
+    0 0 10px rgba(251, 150, 20, 0.8),
+    0 0 20px rgba(251, 191, 36, 0.5),
+    0 1px 0 rgba(255, 255, 255, 0.4);
+  transform-origin: left center;
+}
+
+
+
+/* ── Keyframes ───────────────────────────────────────────── */
+@keyframes poetryFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes poetryCardFloatIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes poetryGlowPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.15);
+    opacity: 0.9;
+  }
+}
+
+@keyframes activeNoteJiggle {
+  /* Burst: wiggle for ~18% of the cycle */
+  0%   { transform: rotate(0deg)    translateY(0px); }
+  3%   { transform: rotate(-3deg)   translateY(-2px); }
+  6%   { transform: rotate(3.5deg)  translateY(-5px); }
+  9%   { transform: rotate(-3deg)   translateY(-2px); }
+  12%  { transform: rotate(2.5deg)  translateY(-4px); }
+  15%  { transform: rotate(-2deg)   translateY(-1px); }
+  18%  { transform: rotate(1deg)    translateY(0px); }
+  /* Rest: sit still for the remainder */
+  20%, 100% { transform: rotate(0deg) translateY(0px); }
+}
+
+@keyframes activeNoteGlow {
+  0%, 100% {
+    filter:
+      drop-shadow(0 0 4px  rgba(251, 191, 36, 0.25))
+      drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.35));
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 18px rgba(251, 191, 36, 0.95))
+      drop-shadow(0 0 32px rgba(251, 150, 20, 0.6))
+      drop-shadow(3px 8px 16px rgba(0, 0, 0, 0.55));
+  }
+}
+
+@keyframes noteLeadBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes noteTextPulse {
+  0%, 100% {
+    opacity: 0.75;
+    transform: scale(1);
+    text-shadow:
+      0 0 6px  rgba(251, 150, 20, 0.5),
+      0 1px 0 rgba(255, 255, 255, 0.35);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+    text-shadow:
+      0 0 14px rgba(251, 150, 20, 0.95),
+      0 0 28px rgba(251, 191, 36, 0.65),
+      0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+}

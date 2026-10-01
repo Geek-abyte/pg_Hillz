@@ -1,0 +1,47 @@
+/* ── PAGE 7 ──────────────────────────────────────────────── */
+.sb-p7__title {
+  top: 4%;
+  left: 4%;
+  width: 58%;
+  z-index: 12;
+  transform: rotate(-1.5deg);
+}
+
+.sb-p7__photo {
+  top: 36%;
+  left: 18%;
+  width: 62%;
+  z-index: 10;
+  transform: rotate(-2deg);
+  background: white;
+  padding: 2.5% 2.5% 9% 2.5%;
+  box-shadow: 6px 8px 22px rgba(0, 0, 0, 0.55);
+}
+
+.sb-p7__flower {
+  bottom: 4%;
+  left: 5%;
+  width: 14%;
+  z-index: 11;
+}
+
+.sb-p7__smiley {
+  bottom: 4%;
+  right: 6%;
+  width: 14%;
+  z-index: 11;
+}
+
+.sb-p7__heart {
+  top: 26%;
+  right: 5%;
+  width: 7%;
+  z-index: 11;
+}
+
+.sb-p7__butterfly {
+  top: 5%;
+  right: 4%;
+  width: 14%;
+  z-index: 13;
+}

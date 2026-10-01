@@ -1,0 +1,104 @@
+/* ── Messages Page ───────────────────────────── */
+.messages-page {
+  min-height: 100vh;
+  padding-top: 60px;
+  overflow-y: auto;
+}
+
+.messages-page h1 {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(34px, 4.5vw, 56px);
+  color: var(--nav-text);
+  text-align: center;
+  margin-bottom: 36px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+/* Message form */
+.message-form {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 32px;
+}
+
+.message-form input,
+.message-form textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: var(--nav-text);
+  font-family: 'Caveat', cursive;
+  font-size: 18px;
+  margin-bottom: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.message-form input::placeholder,
+.message-form textarea::placeholder {
+  color: rgba(232, 213, 163, 0.4);
+}
+
+.message-form input:focus,
+.message-form textarea:focus {
+  border-color: rgba(212, 168, 67, 0.6);
+}
+
+.message-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.message-form button {
+  background: var(--gold);
+  color: #1a2e1e;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 28px;
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.message-form button:hover {
+  background: #e0b94f;
+  transform: translateY(-1px);
+}
+
+/* Message card */
+.message-card {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+}
+
+.message-card .author {
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.message-card .content {
+  font-family: 'Caveat', cursive;
+  font-size: 18px;
+  color: var(--nav-text);
+  line-height: 1.5;
+}
+
+.message-card .time {
+  font-size: 12px;
+  color: rgba(232, 213, 163, 0.35);
+  margin-top: 8px;
+}

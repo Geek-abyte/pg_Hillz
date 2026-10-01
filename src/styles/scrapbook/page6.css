@@ -1,0 +1,86 @@
+/* ══════════════════════════════════════════════════════════
+   PAGE 6 — Military / Olive Drab Scrapbook Spread
+   Reference:
+   - Deep olive green paper background (01_background.jpeg)
+   - Top-left: Torn craft paper note "See as GOD don help am..." with underline (03_handwritten_note.png)
+   - Top-right: Embroidered military rank chevron badge with star (02_badge.png)
+   - Center: Main polaroid with soldier in camo & beret, taped with translucent tape at top (04_main_polaroid_photo.png)
+   - Bottom-left: Torn camouflage fabric collage corner (05_camoflage_collage.png)
+   - Bottom-right: Tactical military binoculars sticker (06_binocculers.png)
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Full-bleed background ── */
+.sb-p6__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── Top-left: Handwritten paper note ── */
+.sb-p6__note {
+  position: absolute;
+  top: 3.5%;
+  left: 2%;
+  width: 48%;
+  z-index: 4;
+  transform: rotate(-3deg);
+  filter: drop-shadow(0 5px 14px rgba(0, 0, 0, 0.45));
+  pointer-events: none;
+}
+
+/* ── Top-right: Military Chevron Badge with Star ── */
+.sb-p6__badge {
+  position: absolute;
+  top: 6%;
+  right: 6%;
+  width: 17%;
+  z-index: 4;
+  transform: rotate(2deg);
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+  pointer-events: none;
+}
+
+/* ── Center: Main soldier polaroid ── */
+.sb-p6__main-polaroid {
+  position: absolute;
+  top: 22.5%;
+  left: 17.5%;
+  width: 65%;
+  z-index: 5;
+  transform: rotate(-1deg);
+  pointer-events: none;
+}
+
+.sb-p6__main-polaroid-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.55));
+}
+
+/* ── Bottom-left: Torn camouflage collage corner ── */
+.sb-p6__camo-corner {
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  width: 53%;
+  z-index: 6;
+  pointer-events: none;
+  filter: drop-shadow(2px -2px 8px rgba(0, 0, 0, 0.35));
+}
+
+/* ── Bottom-right: Military binoculars sticker ── */
+.sb-p6__binoculars {
+  position: absolute;
+  bottom: 5.5%;
+  right: 5.5%;
+  width: 24%;
+  z-index: 6;
+  transform: rotate(-10deg);
+  filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.42));
+  pointer-events: none;
+}
