@@ -38,6 +38,28 @@
   pointer-events: none;
 }
 
+/* Interactive Note Wrap (for Page 4) */
+.sb-p5__note-wrap {
+  position: absolute;
+  top: 3.5%;
+  left: 3%;
+  width: 42%;
+  z-index: 10;
+  transform: rotate(-1.5deg);
+  transform-origin: center bottom;
+  cursor: pointer;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.sb-p5__note-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* ── Tape on top of Good Friends note ── */
 .sb-p5__top-tape {
   position: absolute;
@@ -91,6 +113,13 @@
   z-index: 9;
   filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.2));
   pointer-events: none;
+}
+
+.sb-p5__flower-bundle--right {
+  left: auto;
+  right: 5%;
+  bottom: 38%;
+  transform: rotate(-10deg) scaleX(-1);
 }
 
 /* ── Accent lines doodle bottom-left ── */

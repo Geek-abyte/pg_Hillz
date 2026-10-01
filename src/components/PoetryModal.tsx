@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export interface NoteMessage {
   title: string;
@@ -14,47 +14,75 @@ interface PoetryModalProps {
 
 export default function PoetryModal({ isOpen, onClose, note }: PoetryModalProps) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const [isClosing, setIsClosing] = useState(false);
+  const [renderedNote, setRenderedNote] = useState<NoteMessage | null>(null);
 
-  // Handle ESC key to close and reset scroll
   useEffect(() => {
-    if (!isOpen) return;
-    if (cardRef.current) {
-      cardRef.current.scrollTop = 0;
+    if (isOpen && note) {
+      setRenderedNote(note);
+      setIsClosing(false);
+      if (cardRef.current) {
+        cardRef.current.scrollTop = 0;
+      }
+    } else if (!isOpen && renderedNote) {
+      setIsClosing(true);
+      const timer = setTimeout(() => {
+        setIsClosing(false);
+        setRenderedNote(null);
+      }, 340);
+      return () => clearTimeout(timer);
     }
+  }, [isOpen, note]);
+
+  const handleClose = () => {
+    if (isClosing) return;
+    setIsClosing(true);
+    setTimeout(() => {
+      onClose();
+      setIsClosing(false);
+      setRenderedNote(null);
+    }, 320);
+  };
+
+  // Handle ESC key to close
+  useEffect(() => {
+    if (!isOpen && !isClosing) return;
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") handleClose();
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, onClose]);
+  }, [isOpen, isClosing]);
 
-  if (!isOpen || !note) return null;
+  if (!isOpen && !isClosing && !renderedNote) return null;
+  const currentNote = note || renderedNote;
+  if (!currentNote) return null;
 
   // Split string content into paragraphs if needed
-  const paragraphs = Array.isArray(note.content)
-    ? note.content
-    : note.content.split("\n\n").filter(Boolean);
+  const paragraphs = Array.isArray(currentNote.content)
+    ? currentNote.content
+    : currentNote.content.split("\n\n").filter(Boolean);
 
   return (
     <div
-      className="poetry-backdrop"
-      onClick={onClose}
+      className={`poetry-backdrop ${isClosing ? "poetry-backdrop--closing" : ""}`}
+      onClick={handleClose}
       role="dialog"
       aria-modal="true"
-      aria-label={note.title}
+      aria-label={currentNote.title}
     >
-      {/* Decorative ambient ambient floating particles / glow */}
-      <div className="poetry-ambient-glow" />
+      {/* Decorative ambient floating particles / glow */}
+      <div className={`poetry-ambient-glow ${isClosing ? "poetry-ambient-glow--closing" : ""}`} />
 
       <div
         ref={cardRef}
-        className="poetry-card"
+        className={`poetry-card ${isClosing ? "poetry-card--closing" : ""}`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           className="poetry-close-btn"
-          onClick={onClose}
+          onClick={handleClose}
           aria-label="Close message"
         >
           ✕
@@ -67,11 +95,11 @@ export default function PoetryModal({ isOpen, onClose, note }: PoetryModalProps)
 
         {/* Author Byline */}
         <div className="poetry-author">
-          <span>from</span> {note.author}
+          <span>from</span> {currentNote.author}
         </div>
 
         {/* Title */}
-        <h2 className="poetry-title">{note.title}</h2>
+        <h2 className="poetry-title">{currentNote.title}</h2>
 
         <div className="poetry-divider" />
 

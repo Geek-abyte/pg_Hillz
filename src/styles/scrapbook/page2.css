@@ -90,15 +90,32 @@
 
 /* ── Polaroid photo & video ── */
 .sb-p2__polaroid-wrap {
+  /* position: absolute is set by .sb-el */
   top: 17%;
   left: 12%;
   width: 73%;
-  aspect-ratio: 1 / 1;
   z-index: 11;
   transform: rotate(-1.5deg);
+  /* height is determined by the frame image inside */
 }
 
-/* Video playing behind the polaroid cutout window */
+/* Photo behind the polaroid cutout window */
+.sb-p2__photo {
+  position: absolute;
+  /* Inset to match the polaroid frame's image window */
+  top: 6%;
+  left: 12%;
+  right: 12%;
+  bottom: 20%; /* polaroid frames have a white bottom strip */
+  object-fit: cover;
+  object-position: center 20%;
+  transform: rotate(-6.7deg);
+  transform-origin: center center;
+  z-index: 1;
+  border-radius: 2px;
+}
+
+/* Video playing behind the polaroid cutout window (if used) */
 .sb-p2__video {
   position: absolute;
   top: 6.5%;
@@ -112,15 +129,27 @@
   border-radius: 2px;
 }
 
-/* Polaroid frame sits on top with cutout window */
+/* Polaroid frame — drives the wrap's height and sits on top */
 .sb-p2__polaroid-frame {
-  position: absolute;
-  inset: 0;
+  position: relative; /* in-flow to determine wrap height */
+  display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
   z-index: 2;
   pointer-events: none;
-  transform: none;
+}
+
+/* Ribbon placed on the top-left corner of the polaroid image */
+.sb-p2__ribbon {
+  position: absolute;
+  top: 2%;
+  left: 3%;
+  width: 30%;
+  height: auto;
+  z-index: 20;
+  transform: rotate(-10deg);
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+  pointer-events: none;
 }
 
 /* ── Bottom lined note wrapper — note + label move as one ── */

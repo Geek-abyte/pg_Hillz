@@ -11,11 +11,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  background: rgba(8, 16, 11, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  animation: poetryFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  padding: clamp(16px, 3vw, 28px);
+  background: rgba(6, 14, 9, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  animation: poetryBackdropIn 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.poetry-backdrop--closing {
+  animation: poetryBackdropOut 0.32s cubic-bezier(0.4, 0, 1, 1) both;
+  pointer-events: none;
 }
 
 /* Subtle ambient golden candlelight glow in the center */
@@ -24,12 +29,16 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: min(90vw, 700px);
-  height: min(90vh, 700px);
-  background: radial-gradient(circle, rgba(212, 168, 67, 0.18) 0%, rgba(212, 168, 67, 0.05) 50%, transparent 75%);
+  width: min(90vw, 760px);
+  height: min(90vh, 760px);
+  background: radial-gradient(circle, rgba(212, 168, 67, 0.22) 0%, rgba(212, 168, 67, 0.06) 48%, transparent 75%);
   pointer-events: none;
-  filter: blur(40px);
-  animation: poetryGlowPulse 4s ease-in-out infinite alternate;
+  filter: blur(50px);
+  animation: poetryGlowIn 0.5s ease-out both, poetryGlowPulse 4s ease-in-out infinite alternate 0.5s;
+}
+
+.poetry-ambient-glow--closing {
+  animation: poetryGlowOut 0.28s ease-in both !important;
 }
 
 /* ── Poetry Card Container ───────────────────────────────── */
@@ -39,18 +48,23 @@
   max-width: 660px;
   max-height: 88vh;
   overflow-y: auto;
-  background: linear-gradient(170deg, rgba(26, 46, 30, 0.96) 0%, rgba(18, 33, 22, 0.98) 100%);
-  border: 1px solid rgba(212, 168, 67, 0.35);
-  border-radius: 20px;
+  background: linear-gradient(170deg, rgba(24, 44, 28, 0.97) 0%, rgba(14, 28, 18, 0.99) 100%);
+  border: 1px solid rgba(212, 168, 67, 0.38);
+  border-radius: 22px;
   padding: clamp(40px, 6vw, 54px) clamp(24px, 5vw, 44px) clamp(32px, 5vw, 44px);
   box-shadow:
-    0 24px 60px rgba(0, 0, 0, 0.75),
-    0 0 30px rgba(212, 168, 67, 0.12),
+    0 28px 75px rgba(0, 0, 0, 0.8),
+    0 0 40px rgba(212, 168, 67, 0.15),
     inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-  animation: poetryCardFloatIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: poetryCardIn 0.46s cubic-bezier(0.18, 0.9, 0.28, 1.14) both;
   color: #fffdf5;
   scrollbar-width: thin;
   scrollbar-color: rgba(212, 168, 67, 0.4) transparent;
+  will-change: transform, opacity;
+}
+
+.poetry-card--closing {
+  animation: poetryCardOut 0.32s cubic-bezier(0.36, 0, 0.66, -0.2) both;
 }
 
 .poetry-card::-webkit-scrollbar {
@@ -222,34 +236,93 @@
 
 
 /* ── Keyframes ───────────────────────────────────────────── */
-@keyframes poetryFadeIn {
-  from {
+@keyframes poetryBackdropIn {
+  0% {
     opacity: 0;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
   }
-  to {
+  100% {
     opacity: 1;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
   }
 }
 
-@keyframes poetryCardFloatIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px) scale(0.92);
-  }
-  to {
+@keyframes poetryBackdropOut {
+  0% {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+  100% {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+  }
+}
+
+@keyframes poetryGlowIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+  100% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes poetryGlowOut {
+  0% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.85);
+  }
+}
+
+@keyframes poetryCardIn {
+  0% {
+    opacity: 0;
+    transform: translateY(42px) scale(0.92) rotate(-0.5deg);
+    filter: blur(4px);
+  }
+  65% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.008) rotate(0.1deg);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px) scale(1) rotate(0deg);
+    filter: blur(0px);
+  }
+}
+
+@keyframes poetryCardOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.94) rotate(0.8deg);
+    filter: blur(4px);
   }
 }
 
 @keyframes poetryGlowPulse {
   0% {
-    transform: translate(-50%, -50%) scale(0.9);
-    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(0.92);
+    opacity: 0.55;
   }
   100% {
-    transform: translate(-50%, -50%) scale(1.15);
-    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1.12);
+    opacity: 0.85;
   }
 }
 

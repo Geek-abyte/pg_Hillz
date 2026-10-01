@@ -105,6 +105,29 @@
   pointer-events: none;
 }
 
+/* Interactive Note Wrap for Tony's note — kept behind the main image in original position */
+.sb-p4__note-wrap {
+  position: absolute;
+  top: 34%;
+  right: 6%;
+  width: 32%;
+  z-index: 3;
+  transform: rotate(-0.5deg);
+  transform-origin: center bottom;
+  cursor: pointer;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.sb-p4__note-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.35));
+}
+
 /* ── Main Lower Polaroid (Photo & Frame) ── */
 .sb-p4__lower-polaroid {
   position: absolute;
@@ -113,6 +136,13 @@
   width: 54%;
   z-index: 5;
   transform: rotate(-2.5deg);
+}
+
+.sb-p4__lower-polaroid--single {
+  top: 22%;
+  left: 18%;
+  width: 62%;
+  transform: rotate(-1.5deg);
 }
 
 .sb-p4__lower-polaroid-frame {
@@ -173,3 +203,106 @@
   z-index: 10;
   pointer-events: none;
 }
+
+/* ── Interactive Active Notes for Page 10 (TLH Notes) ── */
+/* Keep behind the main picture (sb-p4__lower-polaroid has z-index: 5) */
+.sb-p4__quote-note-wrap {
+  position: absolute;
+  top: 14%;
+  left: 23%;
+  width: 31%;
+  z-index: 2;
+  transform: rotate(-1.5deg);
+  cursor: pointer;
+  pointer-events: auto;
+  outline: none;
+}
+
+.sb-p4__quote-note-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.sb-p4__lined-note-wrap {
+  position: absolute;
+  top: 34%;
+  right: 6%;
+  width: 32%;
+  z-index: 3;
+  transform: rotate(-0.5deg);
+  cursor: pointer;
+  pointer-events: auto;
+  outline: none;
+}
+
+/* ══════════════════════════════════════════════════════════
+   PAGE 9 — Mabel 3-Photo Collage Layout
+   ══════════════════════════════════════════════════════════ */
+.sb-page--nine .sb-p9__photo-wrap {
+  position: absolute;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), z-index 0.2s ease;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.5));
+}
+
+.sb-page--nine .sb-p9__photo-wrap:hover {
+  transform: scale(1.04) rotate(0deg) !important;
+  z-index: 30 !important;
+}
+
+.sb-page--nine .sb-p9__photo-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Photo 1: Top-Right angled */
+.sb-page--nine .sb-p9__photo-wrap--1 {
+  top: 6%;
+  right: 8%;
+  width: 44%;
+  z-index: 5;
+  transform: rotate(3.5deg);
+}
+
+/* Photo 2: Mid-Left hero */
+.sb-page--nine .sb-p9__photo-wrap--2 {
+  top: 26%;
+  left: 6%;
+  width: 48%;
+  z-index: 7;
+  transform: rotate(-3.5deg);
+}
+
+/* Photo 3: Bottom-Right angled */
+.sb-page--nine .sb-p9__photo-wrap--3 {
+  top: 48%;
+  right: 10%;
+  width: 46%;
+  z-index: 8;
+  transform: rotate(2deg);
+}
+
+/* Top-right tape on photo 1 */
+.sb-page--nine .sb-p9__tape-1 {
+  position: absolute;
+  top: 4.5%;
+  right: 7%;
+  width: 14%;
+  z-index: 9;
+  transform: rotate(-5deg);
+  pointer-events: none;
+}
+
+/* Bottom-left tape on photo 2 */
+.sb-page--nine .sb-p9__tape-2 {
+  position: absolute;
+  top: 65%;
+  left: 4%;
+  width: 13%;
+  z-index: 10;
+  transform: rotate(15deg);
+  pointer-events: none;
+}
+
+

@@ -30,12 +30,15 @@ import p2StarDoodleTop from "../assets/page2/16_upper_purple_star_doodle.png";
 import p2HeartDoodleL from "../assets/page2/17_lower_left_purple_heart_doodle.png";
 import p2StarDoodleLow from "../assets/page2/18_lower_purple_star_doodle.png";
 import p2PolaroidFrame from "../assets/page2/20_polaroid_frame_cutout.png";
+import p2Photo from "../assets/page2/noname.png";
 import p2Video from "../assets/page2/WhatsApp Video 2026-09-27 at 09.53.11.mp4";
+import p2Ribbon from "../assets/page3/08_gold_bow.png";
 import p2BottomSheet from "../assets/page2/21_bottom_yellow_paper_sheet.png";
 import PoetryModal, { type NoteMessage } from "../components/PoetryModal";
 
 /* ── Page 3 assets ───────────────────────────────────────── */
 import p3Bg from "../assets/page3/00_background_black_paper.jpeg";
+import p3SageBg from "../assets/page3_bg_sage.jpg";
 import p3NewsTop from "../assets/page3/01_top_left_newspaper.png";
 import p3NewsBot from "../assets/page3/02_bottom_right_newspaper.png";
 import p3BluePaint from "../assets/page3/03_blue_paint_stroke.png";
@@ -45,22 +48,26 @@ import p3PinkFlower from "../assets/page3/06_upper_pink_flower_doodle.png";
 import p3Strawberry from "../assets/page3/07_strawberry_sticker.png";
 import p3Bow from "../assets/page3/08_gold_bow.png";
 import p3Rose from "../assets/page3/09_rose_sticker.png";
-import p3UpperFrame from "../assets/page3/10_upper_polaroid_frame.png";
-import p3LowerFrame from "../assets/page3/11_lower_polaroid_frame.png";
-import p3UpperPhoto from "../assets/page3/12_upper_main_photo.png";
-import p3LowerPhoto from "../assets/page3/13_lower_main_photo.png";
 import p3BdayText from "../assets/page3/14_birthday_lettering.png";
 import p3LinesLeft from "../assets/page3/17_lower_left_birthday_lines.png";
 import p3StarRight from "../assets/page3/18_lower_right_small_star.png";
 import p3LinesRight from "../assets/page3/19_lower_right_small_lines.png";
 import p3Bunny from "../assets/page3/16_bunny_sticker.png";
+import p3Photo from "../assets/page3/noname.png";
+import sophie1 from "../assets/sophia/sophie1.png";
+import sophie2 from "../assets/sophia/sophie2.png";
+import sophie3 from "../assets/sophia/sophie3.png";
+import praise1 from "../assets/el-praise/praise1.png";
+import praise2 from "../assets/el-praise/priase2.png";
+import melody1 from "../assets/melody/melody1.png";
+import melody2 from "../assets/melody/melody2.png";
+import elPraiseNote from "../assets/el-praise/note.png";
 
 /* ── Page 4 assets ───────────────────────────────────────── */
+import tonyPhoto from "../assets/tony/tony.png";
+import tlhPhoto from "../assets/TLH.png";
 import p4Bg from "../assets/page4/00_background_reconstructed.jpeg";
-import p4NameLettering from "../assets/page4/01_name_lettering.png";
 import p4QuotePaper from "../assets/page4/02_quote_paper.png";
-import p4UpperFrame from "../assets/page4/03_upper_polaroid_frame.png";
-import p4TopTape from "../assets/page4/05_top_tape.png";
 import p4LinedNote from "../assets/page4/06_right_lined_note.png";
 import p4LowerFrame from "../assets/page4/07_lower_polaroid_frame.png";
 import p4LeftFlower from "../assets/page4/09_left_flower.png";
@@ -68,7 +75,6 @@ import p4LowerFlower from "../assets/page4/10_lower_flower.png";
 import p4OrangeTape from "../assets/page4/11_orange_tape.png";
 import p4BdayLettering from "../assets/page4/12_birthday_girl_lettering.png";
 import p4BottomMessage from "../assets/page4/13_bottom_message.png";
-import p4ArrowDoodle from "../assets/page4/15_arrow_doodle.png";
 import p4LowerLeftTape from "../assets/page4/16_lower_left_tape.png";
 
 /* ── Page 5 assets ───────────────────────────────────────── */
@@ -77,8 +83,7 @@ import p5GoodFriendsNote from "../assets/page5/01_good_friends_paper_note.png";
 import p5TopTape from "../assets/page5/02_top_tape.png";
 import p5CameraSticker from "../assets/page5/03_camera_sticker.png";
 import p5Sunflower from "../assets/page5/04_sunflower_sticker.png";
-import p5MainPolaroidFrame from "../assets/page5/05_main_polaroid_frame.png";
-import p5PhotoStrip from "../assets/page5/07_right_photo_strip.png";
+import divinePhoto from "../assets/page5/divine.png";
 import p5StripTape from "../assets/page5/08_right_strip_tape.png";
 import p5FlowerBundle from "../assets/page5/09_dried_flower_bundle.png";
 import p5Butterfly from "../assets/page5/11_butterfly_sticker.png";
@@ -95,6 +100,24 @@ import p6Note from "../assets/page6/03_handwritten_note.png";
 import p6Polaroid from "../assets/page6/04_main_polaroid_photo.png";
 import p6CamoCorner from "../assets/page6/05_camoflage_collage.png";
 import p6Binoculars from "../assets/page6/06_binocculers.png";
+import gbemiMain from "../assets/gbemi/gbemi-main.png";
+import gbemiGallery from "../assets/gbemi/gallery.png";
+import gbemiPhoto1 from "../assets/gbemi/WhatsApp Image 2026-09-30 at 19.02.34 (1).jpeg";
+import gbemiPhoto2 from "../assets/gbemi/WhatsApp Image 2026-09-30 at 19.02.35 (1).jpeg";
+import gbemiPhoto3 from "../assets/gbemi/WhatsApp Image 2026-09-30 at 19.02.35 (2).jpeg";
+import gbemiPhoto4 from "../assets/gbemi/WhatsApp Image 2026-09-30 at 19.02.35.jpeg";
+import gbemiPhoto5 from "../assets/gbemi/WhatsApp Image 2026-10-01 at 08.26.39.jpeg";
+import gbemiPhoto6 from "../assets/gbemi/WhatsApp Image 2026-10-01 at 08.26.40.jpeg";
+import BentoGalleryModal from "../components/BentoGalleryModal";
+
+export const GBEMI_GALLERY_IMAGES = [
+  gbemiPhoto1,
+  gbemiPhoto2,
+  gbemiPhoto3,
+  gbemiPhoto4,
+  gbemiPhoto5,
+  gbemiPhoto6,
+];
 
 export const PAGE_2_NOTE: NoteMessage = {
   title: "My own old woman🙈🌸❤️",
@@ -110,7 +133,128 @@ Happy birthday, my girl
 You know I'll always love you🥂💕`,
 };
 
-type PageRenderFn = (onOpenNote: (note: NoteMessage) => void) => React.ReactNode;
+export const PAGE_7_NOTE: NoteMessage = {
+  title: "Blankie",
+  author: "Barbie boy",
+  content: `It seems only fair that the Author should be finisher. If I began a quest to describe your awesomeness, I would quickly become aware of my inability to properly do justice to the quality of your smile, the warmth you bring into the lives of the people around you, and the impact of your friendship.
+
+And then there is the curious matter of your ability to change lives, which, much like an atomic bomb, has the rather inconvenient habit of happening permanently—though, in your case, for the better..... (Allegedly so) 💥😂
+
+So, Because of the unfortunate limitations of language when confronted with the wonder that is you. I have gone the way of borrowing other people's words—their emotions, their memories, their attempts to put into words what you mean to them—and making them my own weapon, in the hope that, collectively, they might come somewhere close to conveying the kind of greatness you deserve.
+
+Happy New Month.
+Happy Birthday.
+
+And God Bless America...
+
+Sorry—I mean, Nigeria. 🇳🇬😂`,
+};
+
+export const PAGE_3_NOTE: NoteMessage = {
+  title: "Happy Birthday Event Planner❤️",
+  author: "Ojima",
+  content: `It's another October 1st🫠
+Independence baby
+Welcome to a new season my guy
+Grow, flourish and prosper
+Enjoy your last birthday as an undergraduate 🫢
+I'm not sweet with words🫠
+But you try my guy🫂
+I cherish you ❤️
+And I'm patiently for your wedding day🫠
+To pay back all you did to me this weekend 🌚`,
+};
+
+export const PAGE_4_NOTE: NoteMessage = {
+  title: "🌚",
+  author: "Divine",
+  content: `Okay Hillary my friend funny how you grew on me, how we started to really talk this year and it’s been like we have been close friends for soo long.
+
+You are really a nice person and you have a beautiful heart ❤️ hold on to that don’t reduce in being the very beautiful soul you are 
+
+Love you plenty 🤗😍
+
+Happy Birthday Hillary 🎉🎉❤️❤️.`,
+};
+
+export const PAGE_6_NOTE: NoteMessage = {
+  title: "Peppermeje !!",
+  author: "Tony",
+  content: `it's always been special every thing about you .your birthday represents independence and it's not a coincidence at all that's the traits you showcase . I want to tell you I love you 😂 always full of gist , terror and intimidating to people of inconvenience and guys don't owe her money by then only God can save you. Happy birthday Hillary ❤️`,
+};
+
+export const PAGE_7_ELPRAISE_NOTE: NoteMessage = {
+  title: "Happy birthday",
+  author: "El-praise",
+  content: `From your brother, Go and marry`,
+};
+
+export const PAGE_11_NOTE: NoteMessage = {
+  title: "You know how it is 🙂↕️",
+  author: "Gbemi",
+  content: `Ayo-Alao Hillary Esemejeh, and all the many names I do not yet know of.
+
+I'm trying my best to be serious because you wouldn't be the first person to see this message hehe, but then again, what's the point?
+
+First off, I LOVE YOU! Very much my friend turned sister 🥹
+
+You're such an amazing person. Where do I start from?
+- God-fearing, God-loving and by extension, people-loving(even if you don't admit it, it shows very much in your actions), hard guy with the softest heart.
+- You have brainsss! You dey craze sometimes sha all these English na for show. You're very smart and intelligent my darling. I genuinely love and admire how dedicated you are to your studies, both in school and beyond it.
+- Beautiful! Inwards, outwards, all wards.
+- You're a spec of a woman! Tailormade by God himself (who else wan dey create masterpiece like this?)
+- You can cook (now this is very important because it's life saving, on days you want to be a good person sha 😂)
+- You're an amazing writer, even if you haven't put so much of your work out, it shows that there's parts of you in every single thing you write.
+- You feel deeply, again, more than you like to admit it and perhaps, that's the most beautiful thing about you. I do hope you never see it as a weakness because it's strength! So silent yet strong because you're very aware of the things you feel and then you talk to God and your friends about it and then take steps and actions in response to those feelings.
+
+So my prayer for you in this new year is no different than every other year but that God strengthens you and makes you grounded even more in him and his ways.
+
+May you singggg, danceee, laugh, cook, love and care for people and vice versa, in this new age!
+May God heal your heart, wholly, completely.
+May you experience his love so much that you have to pause and try to comprehend "what manner of love is this"!
+May you learn how to tell your friends you love them more this year 😂😂😂 as na only restoration power ministries you dey do hard guy for 💀
+You'll grow in wisdom, knowledge and understanding!
+Plenty money to you this year as well. E get why.
+
+Finally, I'm always here for you my darling, all your styling and outfit drama, bring it to me.😂 I can never get tired of it.
+I'm always here to eat your food as well. Shhhh 🤫 stop complaining!
+
+Please don't do terrible food combinations this year, you're strong and healthy now.
+And stop loving men more than me, because of food.
+
+Yes, and I'll probably steal your clothes and even mummy Hillary from you 🙂↕️
+Omo I don dey talk too much.
+I hate you guy. All these things na formality.
+Enjoy your day if you like. 🙂↕️❤️`,
+};
+
+export const PAGE_8_MELODY_NOTE: NoteMessage = {
+  title: "",
+  author: "Melody",
+  content: `Happy Beautiful birthday Hillalove❤️......you've grown so beautifully and I'm a proud sister`,
+};
+
+export const PAGE_10_NOTE_1: NoteMessage = {
+  title: "Not Forgotten",
+  author: "TLH",
+  content: `For everytime you've showed up for us, during your service even when you were not serving we'd like to let you know that we appreciate, everytime you'd sacrifice for our love feast, making it look so easy that others won't see the sacrificial part of it. For the energy and all, ma we want to let you know that it's not forgotten and God bless you ma.
+
+We love you and there's nothing you can do about it.
+Love from TLH`,
+};
+
+export const PAGE_10_NOTE_2: NoteMessage = {
+  title: "To Our Beloved Hillary",
+  author: "TLH",
+  content: `To our beloved Hillary, joy fills our hearts as we write this piece to you.
+
+Our one time Costumer, Treasurer and Secretary, who has been to us like a mother over and over again, even when we don't expect it. We want to let you know that we love you and that God will bless you abundantly.`,
+};
+
+type PageRenderFn = (
+  onOpenNote: (note: NoteMessage) => void,
+  onOpenGallery?: () => void
+) => React.ReactNode;
 
 interface ScrapbookPageDef {
   id: number;
@@ -158,20 +302,30 @@ const PAGES: ScrapbookPageDef[] = [
         {/* ── Top yellow note ── */}
         <img src={p2TopNote} className="sb-el sb-p2__top-note" alt="the little moments" draggable={false} />
 
-        {/* ── Polaroid (with WhatsApp video contained in the cutout window) ── */}
+        {/* ── Polaroid (video/photo behind frame, ribbon on top-left corner) ── */}
         <div className="sb-el sb-p2__polaroid-wrap">
+          {/* Frame first — in-flow, determines the wrap's height */}
+          <img
+            src={p2PolaroidFrame}
+            className="sb-p2__polaroid-frame"
+            alt=""
+            draggable={false}
+          />
+          {/* Video plays behind the frame cutout window */}
           <video
-            className="sb-p2__video"
             src={p2Video}
+            poster={p2Photo}
+            className="sb-p2__video"
             autoPlay
             loop
             muted
             playsInline
           />
+          {/* Ribbon on top-left corner of the image */}
           <img
-            src={p2PolaroidFrame}
-            className="sb-p2__polaroid-frame"
-            alt=""
+            src={p2Ribbon}
+            className="sb-p2__ribbon"
+            alt="Gold ribbon"
             draggable={false}
           />
         </div>
@@ -190,7 +344,6 @@ const PAGES: ScrapbookPageDef[] = [
             alt="good friends, silly moments, big dreams, always"
             draggable={false}
           />
-          <span className="sb-note-lead__text">✨ tap the note to read a message</span>
         </div>
 
 
@@ -214,7 +367,7 @@ const PAGES: ScrapbookPageDef[] = [
   {
     id: 3,
     bg: "#111111",
-    render: () => (
+    render: (onOpenNote) => (
       <div className="sb-page sb-page--three">
         {/* Background */}
         <img src={p3Bg} className="sb-p3__bg" alt="" draggable={false} />
@@ -238,19 +391,20 @@ const PAGES: ScrapbookPageDef[] = [
         {/* Strawberry sticker right */}
         <img src={p3Strawberry} className="sb-el sb-p3__strawberry" alt="" draggable={false} />
 
-        {/* Upper polaroid — photo behind frame */}
-        <div className="sb-el sb-p3__upper-polaroid">
-          <img src={p3UpperPhoto} className="sb-p3__upper-photo" alt="Friends smiling" draggable={false} />
-          <img src={p3UpperFrame} className="sb-p3__upper-frame" alt="" draggable={false} />
-        </div>
-
-        {/* Gold bow bridging the two polaroids */}
-        <img src={p3Bow} className="sb-el sb-p3__bow" alt="" draggable={false} />
-
-        {/* Lower polaroid — photo behind frame */}
-        <div className="sb-el sb-p3__lower-polaroid">
-          <img src={p3LowerPhoto} className="sb-p3__lower-photo" alt="Friends hugging" draggable={false} />
-          <img src={p3LowerFrame} className="sb-p3__lower-frame" alt="" draggable={false} />
+        {/* Single centered photo with gold ribbon on top-left */}
+        <div className="sb-p3__single-polaroid">
+          <img
+            src={p3Photo}
+            className="sb-p3__single-photo"
+            alt="Friends smiling"
+            draggable={false}
+          />
+          <img
+            src={p3Bow}
+            className="sb-p3__ribbon"
+            alt="Gold ribbon"
+            draggable={false}
+          />
         </div>
 
         {/* Rose sticker lower-left */}
@@ -266,11 +420,88 @@ const PAGES: ScrapbookPageDef[] = [
 
         {/* Bunny sticker lower-right */}
         <img src={p3Bunny} className="sb-el sb-p3__bunny" alt="" draggable={false} />
+
+        {/* Active note — tap to read birthday message */}
+        <div
+          className="sb-el sb-p3__note-wrap"
+          onClick={() => onOpenNote(PAGE_3_NOTE)}
+          role="button"
+          tabIndex={0}
+          aria-label="Read birthday note"
+        >
+          <img
+            src={p2TopNote}
+            className="sb-p3__note-img sb-active-note"
+            alt="Birthday note"
+            draggable={false}
+          />
+        </div>
       </div>
     ),
   },
   {
     id: 4,
+    bg: "#d6c4a8",
+    render: (onOpenNote) => (
+      <div className="sb-page sb-page--five">
+        {/* Full-bleed warm kraft background */}
+        <img src={p5Bg} className="sb-p5__bg" alt="" draggable={false} />
+
+        {/* Top-left: Active Good Friends Paper Note (Click to open poetry modal) */}
+        <div
+          className="sb-el sb-p5__note-wrap"
+          onClick={() => onOpenNote(PAGE_4_NOTE)}
+          role="button"
+          tabIndex={0}
+          aria-label="Read note from Divine"
+        >
+          <img
+            src={p5GoodFriendsNote}
+            className="sb-p5__note-img sb-active-note"
+            alt="Good Friends Better days ♡"
+            draggable={false}
+          />
+        </div>
+
+        {/* Translucent tape holding Good Friends note */}
+        <img src={p5TopTape} className="sb-el sb-p5__top-tape" alt="" draggable={false} />
+
+        {/* Vintage camera sticker top-center */}
+        <img src={p5CameraSticker} className="sb-el sb-p5__camera-sticker" alt="" draggable={false} />
+
+        {/* Sunflower sticker left side */}
+        <img src={p5Sunflower} className="sb-el sb-p5__sunflower" alt="" draggable={false} />
+
+        {/* Left heart doodle */}
+        <img src={p5LeftHeart} className="sb-el sb-p5__left-heart" alt="" draggable={false} />
+
+        {/* Dried white flower bundle moved to right and higher up */}
+        <img src={p5FlowerBundle} className="sb-el sb-p5__flower-bundle sb-p5__flower-bundle--right" alt="" draggable={false} />
+
+        {/* Accent lines doodle bottom-left */}
+        <img src={p5AccentLines} className="sb-el sb-p5__accent-lines" alt="" draggable={false} />
+
+        {/* Main center polaroid with divinePhoto */}
+        <div className="sb-el sb-p5__main-polaroid">
+          <img src={divinePhoto} className="sb-p5__main-polaroid-frame" alt="Divine & Hillary" draggable={false} />
+        </div>
+
+        {/* Right heart doodle */}
+        <img src={p5RightHeart} className="sb-el sb-p5__right-heart" alt="" draggable={false} />
+
+        {/* Small note bottom-right: "Same chaos, different day ☺" */}
+        <img src={p5SmallNote} className="sb-el sb-p5__small-note" alt="Same chaos, different day" draggable={false} />
+
+        {/* Green gingham washi tape bottom-right */}
+        <img src={p5GreenTape} className="sb-el sb-p5__green-tape" alt="" draggable={false} />
+
+        {/* Pink butterfly sticker bottom-center */}
+        <img src={p5Butterfly} className="sb-el sb-p5__butterfly" alt="" draggable={false} />
+      </div>
+    ),
+  },
+  {
+    id: 5,
     bg: "#111111",
     render: () => (
       <div className="sb-page sb-page--three">
@@ -296,19 +527,22 @@ const PAGES: ScrapbookPageDef[] = [
         {/* Strawberry sticker right */}
         <img src={p3Strawberry} className="sb-el sb-p3__strawberry" alt="" draggable={false} />
 
-        {/* Upper polaroid — photo behind frame */}
+        {/* Upper polaroid — sophie1 */}
         <div className="sb-el sb-p3__upper-polaroid">
-          <img src={p3UpperPhoto} className="sb-p3__upper-photo" alt="Friends smiling" draggable={false} />
-          <img src={p3UpperFrame} className="sb-p3__upper-frame" alt="" draggable={false} />
+          <img src={sophie1} className="sb-p3__upper-frame" alt="Hillary & Sophie" draggable={false} />
+        </div>
+
+        {/* Small plaster / overlapping polaroid — sophie3 */}
+        <div className="sb-el sb-p3__mini-polaroid">
+          <img src={sophie3} className="sb-p3__mini-frame" alt="Hillary & Sophie mini" draggable={false} />
         </div>
 
         {/* Gold bow bridging the two polaroids */}
         <img src={p3Bow} className="sb-el sb-p3__bow" alt="" draggable={false} />
 
-        {/* Lower polaroid — photo behind frame */}
+        {/* Lower polaroid — sophie2 */}
         <div className="sb-el sb-p3__lower-polaroid">
-          <img src={p3LowerPhoto} className="sb-p3__lower-photo" alt="Friends hugging" draggable={false} />
-          <img src={p3LowerFrame} className="sb-p3__lower-frame" alt="" draggable={false} />
+          <img src={sophie2} className="sb-p3__lower-frame" alt="Hillary & Sophie" draggable={false} />
         </div>
 
         {/* Rose sticker lower-left */}
@@ -328,18 +562,12 @@ const PAGES: ScrapbookPageDef[] = [
     ),
   },
   {
-    id: 5,
-    bg: "#1c2b22",
-    render: () => (
+    id: 6,
+    bg: "#474a35",
+    render: (onOpenNote) => (
       <div className="sb-page sb-page--four">
         {/* Full-bleed background */}
-        <img src={p4Bg} className="sb-p4__bg" alt="" draggable={false} />
-
-        {/* Top-left: Name Lettering */}
-        <img src={p4NameLettering} className="sb-el sb-p4__name-lettering" alt="Donha Stroupe" draggable={false} />
-
-        {/* Curved dashed arrow pointing to upper polaroid */}
-        <img src={p4ArrowDoodle} className="sb-el sb-p4__arrow-doodle" alt="" draggable={false} />
+        <img src={p6Bg} className="sb-p4__bg" alt="" draggable={false} />
 
         {/* Antique quote paper behind polaroids */}
         <img src={p4QuotePaper} className="sb-el sb-p4__quote-paper" alt="Art is not what you see..." draggable={false} />
@@ -347,19 +575,195 @@ const PAGES: ScrapbookPageDef[] = [
         {/* Tall dried flower stem on the left */}
         <img src={p4LeftFlower} className="sb-el sb-p4__left-flower" alt="" draggable={false} />
 
-        {/* Upper polaroid */}
-        <div className="sb-el sb-p4__upper-polaroid">
-          <img src={p4UpperFrame} className="sb-p4__upper-polaroid-frame" alt="" draggable={false} />
+        {/* Lined kraft notebook note on right (Active note from Tony) */}
+        <div
+          className="sb-el sb-p4__note-wrap"
+          onClick={() => onOpenNote(PAGE_6_NOTE)}
+          role="button"
+          tabIndex={0}
+          aria-label="Read note from Tony"
+        >
+          <img
+            src={p4LinedNote}
+            className="sb-p4__note-img sb-active-note"
+            alt="Same energy. Bigger dreams. Always you."
+            draggable={false}
+          />
         </div>
 
-        {/* Masking tape top-right of upper polaroid */}
-        <img src={p4TopTape} className="sb-el sb-p4__top-tape" alt="" draggable={false} />
+        {/* Single Main Polaroid with Tony */}
+        <div className="sb-el sb-p4__lower-polaroid sb-p4__lower-polaroid--single">
+          <img src={tonyPhoto} className="sb-p4__lower-polaroid-frame" alt="Tony & Hillary" draggable={false} />
+        </div>
+
+        {/* Lower flower cluster overlapping polaroid & note */}
+        <img src={p4LowerFlower} className="sb-el sb-p4__lower-flower" alt="" draggable={false} />
+
+        {/* "BIRTHDAY GIRL" lettering */}
+        <img src={p4BdayLettering} className="sb-el sb-p4__bday-lettering" alt="BIRTHDAY GIRL" draggable={false} />
+
+        {/* Bottom sweet birthday message */}
+        <img src={p4BottomMessage} className="sb-el sb-p4__bottom-message" alt="May your birthday be simple, sweet, and joyful" draggable={false} />
+      </div>
+    ),
+  },
+  {
+    id: 7,
+    bg: "#cad6c5",
+    render: (onOpenNote) => (
+      <div className="sb-page sb-page--three">
+        {/* Background - Sage watercolor texture */}
+        <img src={p3SageBg} className="sb-p3__bg sb-p3__bg--alt" alt="" draggable={false} />
+
+        {/* Torn newspaper corners */}
+        <img src={p3NewsTop} className="sb-el sb-p3__news-top" alt="" draggable={false} />
+        <img src={p3NewsBot} className="sb-el sb-p3__news-bot" alt="" draggable={false} />
+
+        {/* Blue paint stroke */}
+        <img src={p3BluePaint} className="sb-el sb-p3__blue-paint" alt="" draggable={false} />
+
+        {/* Enjoy Life lettering */}
+        <img src={p3EnjoyLife} className="sb-el sb-p3__enjoy-life" alt="Enjoy Life" draggable={false} />
+
+        {/* Heart doodles */}
+        <img src={p3Hearts} className="sb-el sb-p3__hearts" alt="" draggable={false} />
+
+        {/* Pink flower doodle top-right */}
+        <img src={p3PinkFlower} className="sb-el sb-p3__pink-flower" alt="" draggable={false} />
+
+        {/* Strawberry sticker right */}
+        <img src={p3Strawberry} className="sb-el sb-p3__strawberry" alt="" draggable={false} />
+
+        {/* Upper polaroid — praise1 */}
+        <div className="sb-el sb-p3__upper-polaroid">
+          <img src={praise1} className="sb-p3__upper-frame" alt="Hillary & El-praise" draggable={false} />
+        </div>
+
+        {/* Gold bow bridging the two polaroids */}
+        <img src={p3Bow} className="sb-el sb-p3__bow" alt="" draggable={false} />
+
+        {/* Lower polaroid — praise2 */}
+        <div className="sb-el sb-p3__lower-polaroid">
+          <img src={praise2} className="sb-p3__lower-frame" alt="Hillary & El-praise" draggable={false} />
+        </div>
+
+        {/* Rose sticker lower-left */}
+        <img src={p3Rose} className="sb-el sb-p3__rose" alt="" draggable={false} />
+
+        {/* Active Note from El-praise replacing "happy birthday BESTIE" */}
+        <div
+          className="sb-el sb-p3__elpraise-note-wrap"
+          onClick={() => onOpenNote(PAGE_7_ELPRAISE_NOTE)}
+          role="button"
+          tabIndex={0}
+          aria-label="Read note from El-praise"
+        >
+          <img
+            src={elPraiseNote}
+            className="sb-p3__elpraise-note-img sb-active-note"
+            alt="Note from El-praise"
+            draggable={false}
+          />
+        </div>
+
+        {/* Small doodle elements bottom-right */}
+        <img src={p3LinesLeft} className="sb-el sb-p3__lines-left" alt="" draggable={false} />
+        <img src={p3StarRight} className="sb-el sb-p3__star-right" alt="" draggable={false} />
+        <img src={p3LinesRight} className="sb-el sb-p3__lines-right" alt="" draggable={false} />
+
+        {/* Bunny sticker lower-right */}
+        <img src={p3Bunny} className="sb-el sb-p3__bunny" alt="" draggable={false} />
+      </div>
+    ),
+  },
+  {
+    id: 8,
+    bg: "#c9b4e0",
+    render: (onOpenNote) => (
+      <div className="sb-page sb-page--three sb-page--eight">
+        {/* Background from Page 2 */}
+        <img src={p2Bg} className="sb-p3__bg" alt="" draggable={false} />
+
+        {/* Torn newspaper corners */}
+        <img src={p3NewsTop} className="sb-el sb-p3__news-top" alt="" draggable={false} />
+        <img src={p3NewsBot} className="sb-el sb-p3__news-bot" alt="" draggable={false} />
+
+        {/* Blue paint stroke across mid */}
+        <img src={p3BluePaint} className="sb-el sb-p3__blue-paint" alt="" draggable={false} />
+
+        {/* Top-right Enjoy Life lettering */}
+        <img src={p3EnjoyLife} className="sb-el sb-p8__enjoy-life" alt="Enjoy Life" draggable={false} />
+
+        {/* Heart doodles top left */}
+        <img src={p3Hearts} className="sb-el sb-p3__hearts" alt="" draggable={false} />
+
+        {/* Pink flower doodle top-right */}
+        <img src={p3PinkFlower} className="sb-el sb-p3__pink-flower" alt="" draggable={false} />
+
+        {/* Strawberry sticker top-right */}
+        <img src={p3Strawberry} className="sb-el sb-p8__strawberry" alt="" draggable={false} />
+
+        {/* First Melody photo (tilted left, top-left quadrant) */}
+        <div className="sb-el sb-p8__melody1-wrap">
+          <img src={melody1} className="sb-p8__melody-img" alt="Melody & Hillary moment 1" draggable={false} />
+        </div>
+
+        {/* Gold bow accent bridging between the two photos */}
+        <img src={p3Bow} className="sb-el sb-p8__bow" alt="" draggable={false} />
+
+        {/* Second Melody photo (tilted right, mid-right quadrant) */}
+        <div className="sb-el sb-p8__melody2-wrap">
+          <img src={melody2} className="sb-p8__melody-img" alt="Melody & Hillary moment 2" draggable={false} />
+        </div>
+
+        {/* Active Note from Melody replacing "happy birthday BESTIE" */}
+        <div
+          className="sb-el sb-p8__note-wrap"
+          onClick={() => onOpenNote(PAGE_8_MELODY_NOTE)}
+          role="button"
+          tabIndex={0}
+          aria-label="Read note from Melody"
+        >
+          <img
+            src={p2BottomNote}
+            className="sb-p8__note-img sb-active-note"
+            alt="Note from Melody"
+            draggable={false}
+          />
+        </div>
+
+        {/* Rose sticker lower-right */}
+        <img src={p3Rose} className="sb-el sb-p8__rose" alt="" draggable={false} />
+
+        {/* Small doodle elements bottom-right */}
+        <img src={p3LinesLeft} className="sb-el sb-p3__lines-left" alt="" draggable={false} />
+        <img src={p3StarRight} className="sb-el sb-p3__star-right" alt="" draggable={false} />
+        <img src={p3LinesRight} className="sb-el sb-p3__lines-right" alt="" draggable={false} />
+
+        {/* Bunny sticker bottom-center */}
+        <img src={p3Bunny} className="sb-el sb-p8__bunny" alt="" draggable={false} />
+      </div>
+    ),
+  },
+  {
+    id: 9,
+    bg: "#1c2b22",
+    render: () => (
+      <div className="sb-page sb-page--four">
+        {/* Full-bleed background */}
+        <img src={p4Bg} className="sb-p4__bg" alt="" draggable={false} />
+
+        {/* Antique quote paper behind polaroids */}
+        <img src={p4QuotePaper} className="sb-el sb-p4__quote-paper" alt="Art is not what you see..." draggable={false} />
+
+        {/* Tall dried flower stem on the left */}
+        <img src={p4LeftFlower} className="sb-el sb-p4__left-flower" alt="" draggable={false} />
 
         {/* Lined kraft notebook note on right */}
         <img src={p4LinedNote} className="sb-el sb-p4__lined-note" alt="Same energy. Bigger dreams. Always you." draggable={false} />
 
         {/* Lower polaroid (main focus) */}
-        <div className="sb-el sb-p4__lower-polaroid">
+        <div className="sb-el sb-p4__lower-polaroid sb-p4__lower-polaroid--single">
           <img src={p4LowerFrame} className="sb-p4__lower-polaroid-frame" alt="" draggable={false} />
         </div>
 
@@ -381,15 +785,93 @@ const PAGES: ScrapbookPageDef[] = [
     ),
   },
   {
-    id: 6,
+    id: 10,
+    bg: "#111111",
+    render: (onOpenNote) => (
+      <div className="sb-page sb-page--four">
+        {/* Full-bleed background */}
+        <img src={p3Bg} className="sb-p4__bg" alt="" draggable={false} />
+
+        {/* Active Note 1: Antique quote paper (TLH note 1) */}
+        <div
+          className="sb-el sb-p4__quote-note-wrap"
+          onClick={() => onOpenNote(PAGE_10_NOTE_1)}
+          role="button"
+          tabIndex={0}
+          aria-label="Read note 1 from TLH"
+        >
+          <img
+            src={p4QuotePaper}
+            className="sb-p4__quote-note-img sb-active-note"
+            alt="Note from TLH: Not Forgotten"
+            draggable={false}
+          />
+        </div>
+
+        {/* Tall dried flower stem on the left */}
+        <img src={p4LeftFlower} className="sb-el sb-p4__left-flower" alt="" draggable={false} />
+
+        {/* Active Note 2: Lined kraft notebook note on right (TLH note 2) */}
+        <div
+          className="sb-el sb-p4__lined-note-wrap"
+          onClick={() => onOpenNote(PAGE_10_NOTE_2)}
+          role="button"
+          tabIndex={0}
+          aria-label="Read note 2 from TLH"
+        >
+          <img
+            src={p4LinedNote}
+            className="sb-p4__note-img sb-active-note"
+            alt="Note from TLH: To Our Beloved Hillary"
+            draggable={false}
+          />
+        </div>
+
+        {/* Lower polaroid with TLH image */}
+        <div className="sb-el sb-p4__lower-polaroid sb-p4__lower-polaroid--single">
+          <img src={tlhPhoto} className="sb-p4__lower-polaroid-frame" alt="TLH" draggable={false} />
+        </div>
+
+        {/* Masking tape on bottom-left corner of lower polaroid */}
+        <img src={p4LowerLeftTape} className="sb-el sb-p4__lower-left-tape" alt="" draggable={false} />
+
+        {/* Lower flower cluster overlapping polaroid & note */}
+        <img src={p4LowerFlower} className="sb-el sb-p4__lower-flower" alt="" draggable={false} />
+
+        {/* Crinkled orange tape holding the lower flower */}
+        <img src={p4OrangeTape} className="sb-el sb-p4__orange-tape" alt="" draggable={false} />
+
+        {/* "BIRTHDAY GIRL" lettering */}
+        <img src={p4BdayLettering} className="sb-el sb-p4__bday-lettering" alt="BIRTHDAY GIRL" draggable={false} />
+
+        {/* Bottom sweet birthday message */}
+        <img src={p4BottomMessage} className="sb-el sb-p4__bottom-message" alt="May your birthday be simple, sweet, and joyful" draggable={false} />
+      </div>
+    ),
+  },
+  {
+    id: 11,
     bg: "#d6c4a8",
-    render: () => (
+    render: (onOpenNote, onOpenGallery) => (
       <div className="sb-page sb-page--five">
         {/* Full-bleed warm kraft background */}
         <img src={p5Bg} className="sb-p5__bg" alt="" draggable={false} />
 
-        {/* Top-left: Good Friends Better days note */}
-        <img src={p5GoodFriendsNote} className="sb-el sb-p5__good-friends-note" alt="Good Friends Better days ♡" draggable={false} />
+        {/* Top-left: Active Good Friends Paper Note (Click to open poetry modal from Gbemi) */}
+        <div
+          className="sb-el sb-p5__note-wrap"
+          onClick={() => onOpenNote(PAGE_11_NOTE)}
+          role="button"
+          tabIndex={0}
+          aria-label="Read note from Gbemi"
+        >
+          <img
+            src={p5GoodFriendsNote}
+            className="sb-p5__note-img sb-active-note"
+            alt="Good Friends Better days ♡"
+            draggable={false}
+          />
+        </div>
 
         {/* Translucent tape holding Good Friends note */}
         <img src={p5TopTape} className="sb-el sb-p5__top-tape" alt="" draggable={false} />
@@ -409,14 +891,25 @@ const PAGES: ScrapbookPageDef[] = [
         {/* Accent lines doodle bottom-left */}
         <img src={p5AccentLines} className="sb-el sb-p5__accent-lines" alt="" draggable={false} />
 
-        {/* Main center polaroid with friends laughing */}
+        {/* Main center polaroid with gbemiMain */}
         <div className="sb-el sb-p5__main-polaroid">
-          <img src={p5MainPolaroidFrame} className="sb-p5__main-polaroid-frame" alt="Good Friends" draggable={false} />
+          <img src={gbemiMain} className="sb-p5__main-polaroid-frame" alt="Gbemi & Hillary" draggable={false} />
         </div>
 
-        {/* Right 3-photo vertical strip */}
-        <div className="sb-el sb-p5__photo-strip">
-          <img src={p5PhotoStrip} className="sb-p5__photo-strip-img" alt="Memories strip" draggable={false} />
+        {/* Right 3-photo vertical strip with gbemiGallery (Active Picture - opens bento gallery modal) */}
+        <div
+          className="sb-el sb-p5__photo-strip"
+          onClick={() => onOpenGallery && onOpenGallery()}
+          role="button"
+          tabIndex={0}
+          aria-label="View Gbemi photo gallery"
+        >
+          <img
+            src={gbemiGallery}
+            className="sb-p5__photo-strip-img sb-active-picture"
+            alt="Gbemi gallery"
+            draggable={false}
+          />
         </div>
 
         {/* Tape at top of photo strip */}
@@ -437,15 +930,28 @@ const PAGES: ScrapbookPageDef[] = [
     ),
   },
   {
-    id: 7,
+    id: 12,
     bg: "#474a35",
-    render: () => (
+    render: (onOpenNote) => (
       <div className="sb-page sb-page--six">
         {/* Full-bleed olive green background */}
         <img src={p6Bg} className="sb-p6__bg" alt="" draggable={false} />
 
-        {/* Top-left: Handwritten paper note */}
-        <img src={p6Note} className="sb-el sb-p6__note" alt="See as GOD don help am..." draggable={false} />
+        {/* Top-left: Active Handwritten paper note */}
+        <div
+          className="sb-el sb-p6__note-wrap"
+          onClick={() => onOpenNote(PAGE_7_NOTE)}
+          role="button"
+          tabIndex={0}
+          aria-label="Read note from Barbie boy"
+        >
+          <img
+            src={p6Note}
+            className="sb-p6__note-img sb-active-note"
+            alt="See as GOD don help am..."
+            draggable={false}
+          />
+        </div>
 
         {/* Top-right: Military rank chevron badge with star */}
         <img src={p6Badge} className="sb-el sb-p6__badge" alt="Military chevron badge" draggable={false} />
@@ -460,30 +966,6 @@ const PAGES: ScrapbookPageDef[] = [
 
         {/* Bottom-right: Military binoculars sticker */}
         <img src={p6Binoculars} className="sb-el sb-p6__binoculars" alt="Binoculars" draggable={false} />
-      </div>
-    ),
-  },
-  {
-    id: 8,
-    bg: "#2d4a35",
-    render: () => (
-      <div className="sb-page sb-page--seven">
-        <div className="sb-tape sb-tape--top-left" />
-        <img src={birthdayNote} className="sb-el sb-p7__title" alt="Happy Birthday Hillary" draggable={false} />
-        <div className="sb-closing">
-          <p className="sb-closing__text">
-            Happy Birthday,<br />
-            <strong>Hillary.</strong><br />
-            <br />
-            Here's to every<br />beautiful chapter ahead. 📖
-          </p>
-        </div>
-        <img src={mainPolaroid} className="sb-el sb-p7__photo" alt="" draggable={false} />
-        <img src={flower} className="sb-el sb-p7__flower" alt="" draggable={false} />
-        <img src={smiley} className="sb-el sb-p7__smiley" alt="" draggable={false} />
-        <img src={yellowHeart} className="sb-el sb-p7__heart" alt="" draggable={false} />
-        <img src={butterfly} className="sb-el sb-p7__butterfly" alt="" draggable={false} />
-        <div className="sb-closing__fin">✦ fin ✦</div>
       </div>
     ),
   },
@@ -510,6 +992,7 @@ export default function ScrapbookPage() {
   });
   const [animState, setAnimState] = useState<AnimState | null>(null);
   const [activeNote, setActiveNote] = useState<NoteMessage | null>(null);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const touchStartX = useRef<number | null>(null);
 
@@ -521,7 +1004,7 @@ export default function ScrapbookPage() {
     timeoutRef.current = setTimeout(() => {
       setCurrent(next);
       setAnimState(null);
-      try { localStorage.setItem("sb_page", String(next)); } catch (_) {}
+      try { localStorage.setItem("sb_page", String(next)); } catch (_) { }
     }, 680);
   };
 
@@ -531,8 +1014,8 @@ export default function ScrapbookPage() {
   // Keyboard navigation (ArrowLeft / ArrowRight)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Don't turn pages while reading a poetry note modal
-      if (activeNote) return;
+      // Don't turn pages while reading a poetry note modal or viewing gallery modal
+      if (activeNote || isGalleryOpen) return;
       if (e.key === "ArrowLeft") {
         prev();
       } else if (e.key === "ArrowRight") {
@@ -541,16 +1024,16 @@ export default function ScrapbookPage() {
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [current, animState, activeNote]);
+  }, [current, animState, activeNote, isGalleryOpen]);
 
   // Touch swipe support
   const handleTouchStart = (e: React.TouchEvent) => {
-    if (activeNote) return;
+    if (activeNote || isGalleryOpen) return;
     touchStartX.current = e.touches[0].clientX;
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX.current === null || activeNote) return;
+    if (touchStartX.current === null || activeNote || isGalleryOpen) return;
     const diff = e.changedTouches[0].clientX - touchStartX.current;
     if (Math.abs(diff) > 40) {
       if (diff < 0) {
@@ -580,7 +1063,10 @@ export default function ScrapbookPage() {
               className={`sb-sheet sb-sheet--under sb-sheet--under-${animState.dir}`}
               style={{ zIndex: 1 }}
             >
-              {PAGES[animState.dir === "forward" ? animState.to : animState.from].render(setActiveNote)}
+              {PAGES[animState.dir === "forward" ? animState.to : animState.from].render(
+                setActiveNote,
+                () => setIsGalleryOpen(true)
+              )}
               <div className={`sb-shadow-overlay sb-shadow-overlay--${animState.dir}`} />
             </div>
 
@@ -590,14 +1076,14 @@ export default function ScrapbookPage() {
               style={{ zIndex: 10 }}
             >
               <div className="sb-sheet__inner">
-                {PAGES[animState.dir === "forward" ? animState.from : animState.to].render(setActiveNote)}
+                {PAGES[animState.dir === "forward" ? animState.from : animState.to].render(setActiveNote, () => setIsGalleryOpen(true))}
                 <div className="sb-paper-sheen" />
               </div>
             </div>
           </>
         ) : (
           <div className="sb-sheet sb-sheet--static" style={{ zIndex: 1 }}>
-            {PAGES[current].render(setActiveNote)}
+            {PAGES[current].render(setActiveNote, () => setIsGalleryOpen(true))}
           </div>
         )}
       </div>
@@ -651,6 +1137,13 @@ export default function ScrapbookPage() {
         isOpen={!!activeNote}
         onClose={() => setActiveNote(null)}
         note={activeNote}
+      />
+
+      {/* ── Bento Grid Image Gallery Modal (Gbemi page) ── */}
+      <BentoGalleryModal
+        isOpen={isGalleryOpen}
+        onClose={() => setIsGalleryOpen(false)}
+        images={GBEMI_GALLERY_IMAGES}
       />
     </div>
   );
